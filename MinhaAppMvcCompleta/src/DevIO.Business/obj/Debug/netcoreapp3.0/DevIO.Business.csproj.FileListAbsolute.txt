@@ -1,0 +1,16 @@
+C:\Users\PCEstudo\Desktop\MinhaAppMvcCompleta\src\DevIO.Business\bin\Debug\netcoreapp3.0\DevIO.Business.deps.json
+C:\Users\PCEstudo\Desktop\MinhaAppMvcCompleta\src\DevIO.Business\bin\Debug\netcoreapp3.0\DevIO.Business.dll
+C:\Users\PCEstudo\Desktop\MinhaAppMvcCompleta\src\DevIO.Business\bin\Debug\netcoreapp3.0\DevIO.Business.pdb
+C:\Users\PCEstudo\Desktop\MinhaAppMvcCompleta\src\DevIO.Business\obj\Debug\netcoreapp3.0\DevIO.Business.csprojAssemblyReference.cache
+C:\Users\PCEstudo\Desktop\MinhaAppMvcCompleta\src\DevIO.Business\obj\Debug\netcoreapp3.0\DevIO.Business.AssemblyInfoInputs.cache
+C:\Users\PCEstudo\Desktop\MinhaAppMvcCompleta\src\DevIO.Business\obj\Debug\netcoreapp3.0\DevIO.Business.AssemblyInfo.cs
+C:\Users\PCEstudo\Desktop\MinhaAppMvcCompleta\src\DevIO.Business\obj\Debug\netcoreapp3.0\DevIO.Business.dll
+C:\Users\PCEstudo\Desktop\MinhaAppMvcCompleta\src\DevIO.Business\obj\Debug\netcoreapp3.0\DevIO.Business.pdb
+C:\src\AppMvcCompleta\MinhaAppMvcCompleta\src\DevIO.Business\bin\Debug\netcoreapp3.0\DevIO.Business.deps.json
+C:\src\AppMvcCompleta\MinhaAppMvcCompleta\src\DevIO.Business\bin\Debug\netcoreapp3.0\DevIO.Business.dll
+C:\src\AppMvcCompleta\MinhaAppMvcCompleta\src\DevIO.Business\bin\Debug\netcoreapp3.0\DevIO.Business.pdb
+C:\src\AppMvcCompleta\MinhaAppMvcCompleta\src\DevIO.Business\obj\Debug\netcoreapp3.0\DevIO.Business.csprojAssemblyReference.cache
+C:\src\AppMvcCompleta\MinhaAppMvcCompleta\src\DevIO.Business\obj\Debug\netcoreapp3.0\DevIO.Business.AssemblyInfoInputs.cache
+C:\src\AppMvcCompleta\MinhaAppMvcCompleta\src\DevIO.Business\obj\Debug\netcoreapp3.0\DevIO.Business.AssemblyInfo.cs
+C:\src\AppMvcCompleta\MinhaAppMvcCompleta\src\DevIO.Business\obj\Debug\netcoreapp3.0\DevIO.Business.dll
+C:\src\AppMvcCompleta\MinhaAppMvcCompleta\src\DevIO.Business\obj\Debug\netcoreapp3.0\DevIO.Business.pdb
