@@ -15,6 +15,9 @@ namespace DevIO.Data.Mappings
             builder.Property(p => p.Nome).IsRequired().HasColumnType("varchar(100)");
             builder.Property(p => p.Descricao).IsRequired().HasColumnType("varchar(1000)");
             builder.Property(p => p.Imagem).IsRequired().HasColumnType("varchar(100)");
+            builder.Property(e => e.Ativo).HasMaxLength(1).IsUnicode(false);
+            builder.Property(e => e.DataCadastro).HasColumnType("datetime");
+            builder.Property(e => e.DataAlteracao).HasColumnType("datetime");
             builder.ToTable("Produtos");
         }
 

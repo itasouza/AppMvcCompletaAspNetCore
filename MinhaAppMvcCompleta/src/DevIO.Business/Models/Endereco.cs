@@ -15,6 +15,9 @@ namespace DevIO.Business.Models
         public string Cidade { get; set; }
         public string Estado { get; set; }
 
+        public bool Ativo { get; set; }
+        public DateTime? DataCadastro { get; set; }
+        public DateTime? DataAlteracao { get; set; }
 
         /*EF relacionamento*/
         public Guid FornecedorId { get; set; }

@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\src\\AppMvcCompleta\\MinhaAppMvcCompleta\\src\\DevIO.Business\\DevIO.Business.csproj",
+      "projectUniqueName": "C:\\src\\AppMvcCompletaAspNetCore\\MinhaAppMvcCompleta\\src\\DevIO.Business\\DevIO.Business.csproj",
       "projectName": "DevIO.Business",
-      "projectPath": "C:\\src\\AppMvcCompleta\\MinhaAppMvcCompleta\\src\\DevIO.Business\\DevIO.Business.csproj",
+      "projectPath": "C:\\src\\AppMvcCompletaAspNetCore\\MinhaAppMvcCompleta\\src\\DevIO.Business\\DevIO.Business.csproj",
       "packagesPath": "C:\\Users\\PCEstudo\\.nuget\\packages\\",
-      "outputPath": "C:\\src\\AppMvcCompleta\\MinhaAppMvcCompleta\\src\\DevIO.Business\\obj\\",
+      "outputPath": "C:\\src\\AppMvcCompletaAspNetCore\\MinhaAppMvcCompleta\\src\\DevIO.Business\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\PCEstudo\\AppData\\Roaming\\NuGet\\NuGet.Config",

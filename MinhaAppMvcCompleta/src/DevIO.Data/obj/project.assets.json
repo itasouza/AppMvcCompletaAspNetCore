@@ -4980,11 +4980,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\src\\AppMvcCompleta\\MinhaAppMvcCompleta\\src\\DevIO.Data\\DevIO.Data.csproj",
+      "projectUniqueName": "C:\\src\\AppMvcCompletaAspNetCore\\MinhaAppMvcCompleta\\src\\DevIO.Data\\DevIO.Data.csproj",
       "projectName": "DevIO.Data",
-      "projectPath": "C:\\src\\AppMvcCompleta\\MinhaAppMvcCompleta\\src\\DevIO.Data\\DevIO.Data.csproj",
+      "projectPath": "C:\\src\\AppMvcCompletaAspNetCore\\MinhaAppMvcCompleta\\src\\DevIO.Data\\DevIO.Data.csproj",
       "packagesPath": "C:\\Users\\PCEstudo\\.nuget\\packages\\",
-      "outputPath": "C:\\src\\AppMvcCompleta\\MinhaAppMvcCompleta\\src\\DevIO.Data\\obj\\",
+      "outputPath": "C:\\src\\AppMvcCompletaAspNetCore\\MinhaAppMvcCompleta\\src\\DevIO.Data\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\PCEstudo\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5000,8 +5000,8 @@
       "frameworks": {
         "netcoreapp3.0": {
           "projectReferences": {
-            "C:\\src\\AppMvcCompleta\\MinhaAppMvcCompleta\\src\\DevIO.Business\\DevIO.Business.csproj": {
-              "projectPath": "C:\\src\\AppMvcCompleta\\MinhaAppMvcCompleta\\src\\DevIO.Business\\DevIO.Business.csproj"
+            "C:\\src\\AppMvcCompletaAspNetCore\\MinhaAppMvcCompleta\\src\\DevIO.Business\\DevIO.Business.csproj": {
+              "projectPath": "C:\\src\\AppMvcCompletaAspNetCore\\MinhaAppMvcCompleta\\src\\DevIO.Business\\DevIO.Business.csproj"
             }
           }
         }

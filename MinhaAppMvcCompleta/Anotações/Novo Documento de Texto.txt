@@ -1,0 +1,11 @@
+1 - Faltou atributo  para seleção de Data
+2 - Campo de valor sem mascara
+3 - Listagem de endereço na tela de edição só faz sentido se tiver mais de 1 endereço
+4 - Fornecedor na criação recebe uma partial _Endereco, na edição recebe uma nova partial
+parece uma master detalhe mais na verdade grava apenas 1 endereço então deveria ter
+ feito igual na criação e edição
+5 - não tem paginação
+6 - não tem filtros
+7- atualização com modal ficou um processo confuso
+
+

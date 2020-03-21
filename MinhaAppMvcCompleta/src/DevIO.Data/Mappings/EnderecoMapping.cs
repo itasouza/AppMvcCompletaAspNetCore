@@ -19,6 +19,9 @@ namespace DevIO.Data.Mappings
             builder.Property(p => p.Bairro).IsRequired().HasColumnType("varchar(100)");
             builder.Property(p => p.Cidade).IsRequired().HasColumnType("varchar(100)");
             builder.Property(p => p.Estado).IsRequired().HasColumnType("varchar(50)");
+            builder.Property(e => e.Ativo).HasMaxLength(1).IsUnicode(false);
+            builder.Property(e => e.DataCadastro).HasColumnType("datetime");
+            builder.Property(e => e.DataAlteracao).HasColumnType("datetime");
             builder.ToTable("Enderecos");
         }
 
