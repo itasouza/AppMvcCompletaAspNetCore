@@ -161,7 +161,7 @@ namespace DevIO.App.Controllers
             try
             {
                 await _fornecedorRepository.Remover(id);
-                TempData["msg"] = "O Registro foi removido com sucesso";
+                TempData["msg"] = fornecedorViewModel.Nome + " foi excluido com sucesso."; 
             }
             catch (Exception ex)
             {
@@ -171,8 +171,7 @@ namespace DevIO.App.Controllers
                 throw;
             }
 
-           
-            return RedirectToAction(nameof(Index));
+            return Json(fornecedorViewModel.Nome + "  foi excluido com sucesso.");
         }
 
 
