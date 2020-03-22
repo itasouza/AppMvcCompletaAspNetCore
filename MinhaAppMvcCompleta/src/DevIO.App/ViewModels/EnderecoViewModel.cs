@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DevIO.App.Language;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -10,32 +11,75 @@ namespace DevIO.App.ViewModels
         [Key]
         public Guid Id { get; set; }
 
-        [Required(ErrorMessage = "O campo {0} é obrigatório")]
-        [StringLength(200, ErrorMessage = "O campo {0} precisa ter entre {1} caracteres", MinimumLength = 2)]
+   
+        [Display(ResourceType = typeof(Traducao), Name = "NomeLogradouro")]
+        [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
+        [MinLength(2, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E002")]
+        [MaxLength(200, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E003")]
         public string Logradouro { get; set; }
 
-        [DisplayName("Numero")]
-        [Required(ErrorMessage = "O campo {0} é obrigatório")]
-        [StringLength(50, ErrorMessage = "O campo {0} precisa ter entre {1} caracteres", MinimumLength = 2)]
+
+
+        [Display(ResourceType = typeof(Traducao), Name = "NumeroLogradouro")]
+        [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
+        [MinLength(2, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E002")]
+        [MaxLength(50, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E003")]
         public string Numero { get; set; }
 
+
+        [Display(ResourceType = typeof(Traducao), Name = "ComplementoLogradouro")]
+        [MinLength(2, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E002")]
+        [MaxLength(100, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E003")]
         public string Complemento { get; set; }
 
-        [Required(ErrorMessage = "O campo {0} é obrigatório")]
-        [StringLength(8, ErrorMessage = "O campo {0} precisa ter entre {1} caracteres", MinimumLength = 8)]
+
+
+        [Display(ResourceType = typeof(Traducao), Name = "CepLogradouro")]
+        [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
+        [MinLength(8, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E002")]
+        [MaxLength(8, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E003")]
         public string Cep { get; set; }
 
-        [Required(ErrorMessage = "O campo {0} é obrigatório")]
-        [StringLength(100, ErrorMessage = "O campo {0} precisa ter entre {1} caracteres", MinimumLength = 2)]
+
+
+
+        [Display(ResourceType = typeof(Traducao), Name = "BairroLogradouro")]
+        [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
+        [MinLength(2, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E002")]
+        [MaxLength(100, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E003")]
         public string Bairro { get; set; }
 
-        [Required(ErrorMessage = "O campo {0} é obrigatório")]
-        [StringLength(100, ErrorMessage = "O campo {0} precisa ter entre {1} caracteres", MinimumLength = 2)]
+
+
+        [Display(ResourceType = typeof(Traducao), Name = "CidadeLogradouro")]
+        [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
+        [MinLength(2, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E002")]
+        [MaxLength(100, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E003")]
         public string Cidade { get; set; }
 
-        [Required(ErrorMessage = "O campo {0} é obrigatório")]
-        [StringLength(50, ErrorMessage = "O campo {0} precisa ter entre {1} caracteres", MinimumLength = 2)]
+
+
+        [Display(ResourceType = typeof(Traducao), Name = "EstadoLogradouro")]
+        [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
+        [MinLength(2, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E002")]
+        [MaxLength(2, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E003")]
         public string Estado { get; set; }
+
+
+        [Display(ResourceType = typeof(Traducao), Name = "Ativo")]
+        public bool Ativo { get; set; }
+
+
+        [Display(ResourceType = typeof(Traducao), Name = "DataCadastro")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        [ScaffoldColumn(false)]
+        public DateTime? DataCadastro { get; set; }
+
+
+        [Display(ResourceType = typeof(Traducao), Name = "DataAlteracao")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        [ScaffoldColumn(false)]
+        public DateTime? DataAlteracao { get; set; }
 
 
         [HiddenInput]

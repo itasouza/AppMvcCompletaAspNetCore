@@ -1,21 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AutoMapper;
+using DevIO.App.Configurations;
+using DevIO.App.Data;
+using DevIO.Data.Context;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using DevIO.Data.Context;
-using DevIO.App.Data;
-using DevIO.Business.Interfaces;
-using DevIO.Data.Repository;
-using AutoMapper;
+using System.Collections.Generic;
+using System.Globalization;
 
 namespace DevIO.App
 {
@@ -55,10 +51,9 @@ namespace DevIO.App
             services.AddAutoMapper(typeof(Startup));
 
             //configurando o referência do IRepository com o Data Repository (Injeção de dependência)
-            services.AddScoped<MeuDbContext>();
-            services.AddScoped<IProdutoRepository, ProdutoRepository>();
-            services.AddScoped<IFornecedorRepository, FornecedorRepository>();
-            services.AddScoped<IEnderecoRepository, EnderecoRepository>();
+            services.ResolveDependencies();
+
+     
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,6 +70,8 @@ namespace DevIO.App
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

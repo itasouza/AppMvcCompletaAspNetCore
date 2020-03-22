@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DevIO.App.Language;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace DevIO.App.ViewModels
@@ -12,34 +10,66 @@ namespace DevIO.App.ViewModels
         [Key]
         public Guid Id { get; set; }
 
-        [Required(ErrorMessage = "O campo {0} é obrigatório")]
-        [StringLength(200, ErrorMessage = "O campo {0} precisa ter entre {1} caracteres", MinimumLength = 2)]
+
+        [Display(ResourceType = typeof(Traducao), Name = "NomeProduto")]
+        [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
+        [MinLength(200, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E002")]
         public string Nome { get; set; }
 
-        [DisplayName("Descrição")]
-        [Required(ErrorMessage = "O campo {0} é obrigatório")]
-        [StringLength(1000, ErrorMessage = "O campo {0} precisa ter entre {1} caracteres", MinimumLength = 2)]
+
+        [Display(ResourceType = typeof(Traducao), Name = "DescricaoProduto")]
+        [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
+        [MinLength(10, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E002")]
+        [MaxLength(1000, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E003")]
         public string Descricao { get; set; }
 
-        [DisplayName("Imagem do Produto")]
-        public IFormFile ImagemUpload { get; set; }
 
+        //[Display(ResourceType = typeof(Traducao), Name = "ImagemProduto")]
+        //public IFormFile ImagemUpload { get; set; }
+
+        [Display(ResourceType = typeof(Traducao), Name = "ImagemProduto")]
         public string Imagem { get; set; }
 
+
+        [Display(ResourceType = typeof(Traducao), Name = "ValidadeProduto")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
+        public DateTime? DataValidade { get; set; }
+
+
+
+        [Display(ResourceType = typeof(Traducao), Name = "PromocaoProduto")]
+        [Required(ErrorMessage = "O campo {0} é obrigatório")]
+        public bool ProdutoPromocao { get; set; }
+
+
+        [Display(ResourceType = typeof(Traducao), Name = "ValorProduto")]
+        [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
         public decimal Valor { get; set; }
 
-        [ScaffoldColumn(false)]
-        public DateTime DataCadastro { get; set; }
 
-        [DisplayName("Ativo?")]
+        [Display(ResourceType = typeof(Traducao), Name = "Ativo")]
         public bool Ativo { get; set; }
 
-        [DisplayName("Fornecedor")]
-        [Required(ErrorMessage = "O campo {0} é obrigatório")]
+
+        [Display(ResourceType = typeof(Traducao), Name = "DataCadastro")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        [ScaffoldColumn(false)]
+        public DateTime? DataCadastro { get; set; }
+
+
+        [Display(ResourceType = typeof(Traducao), Name = "DataAlteracao")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        [ScaffoldColumn(false)]
+        public DateTime? DataAlteracao { get; set; }
+
+
+        [Display(ResourceType = typeof(Traducao), Name = "NomeFornecedor")]
+        [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
         public Guid FornecedorId { get; set; }
+
         public FornecedorViewModel Fornecedor { get; set; }
 
-        public IEnumerable<FornecedorViewModel> Fornecedores { get; set; }
+
     }
 }

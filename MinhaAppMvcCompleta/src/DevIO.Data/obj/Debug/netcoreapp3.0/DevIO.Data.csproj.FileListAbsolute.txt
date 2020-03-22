@@ -17,3 +17,14 @@ C:\src\AppMvcCompleta\MinhaAppMvcCompleta\src\DevIO.Data\obj\Debug\netcoreapp3.0
 C:\src\AppMvcCompleta\MinhaAppMvcCompleta\src\DevIO.Data\obj\Debug\netcoreapp3.0\DevIO.Data.csproj.CopyComplete
 C:\src\AppMvcCompleta\MinhaAppMvcCompleta\src\DevIO.Data\obj\Debug\netcoreapp3.0\DevIO.Data.dll
 C:\src\AppMvcCompleta\MinhaAppMvcCompleta\src\DevIO.Data\obj\Debug\netcoreapp3.0\DevIO.Data.pdb
+C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.Data\bin\Debug\netcoreapp3.0\DevIO.Data.deps.json
+C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.Data\bin\Debug\netcoreapp3.0\DevIO.Data.dll
+C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.Data\bin\Debug\netcoreapp3.0\DevIO.Data.pdb
+C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.Data\bin\Debug\netcoreapp3.0\DevIO.Business.dll
+C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.Data\bin\Debug\netcoreapp3.0\DevIO.Business.pdb
+C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.Data\obj\Debug\netcoreapp3.0\DevIO.Data.csprojAssemblyReference.cache
+C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.Data\obj\Debug\netcoreapp3.0\DevIO.Data.AssemblyInfoInputs.cache
+C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.Data\obj\Debug\netcoreapp3.0\DevIO.Data.AssemblyInfo.cs
+C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.Data\obj\Debug\netcoreapp3.0\DevIO.Data.csproj.CopyComplete
+C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.Data\obj\Debug\netcoreapp3.0\DevIO.Data.dll
+C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.Data\obj\Debug\netcoreapp3.0\DevIO.Data.pdb

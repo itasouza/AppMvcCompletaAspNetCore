@@ -1,0 +1,40 @@
+﻿--criando o projeto
+dotnet new mvc --auth individual --use-local-db
+
+--adicionar biblioteca mysql
+Pomelo.EntityFrameworkCore.Mysql -version 2.2.0
+
+--Excluir a pasta Migrations para recriar as tabelas do Identity
+
+--criar uma nova migração 
+Add-Migration CreateIdentitySchema
+Update-Database CreateIdentitySchema
+
+--criar uma nova migração  com mais de um Context
+PM> Add-Migration MyFirstMigration -Context BloggingContext
+PM> Update-Database MyFirstMigration -Context BloggingContext
+
+--criar uma nova migração
+Add-Migration CreatesonMarketSchema
+
+--Revertendo Migrações
+Update-Database NomeDaMigração
+
+Remove-Migration NomeDaMigração -Force
+
+--Gerar script sql com base no model
+adicionar :
+Install-Package Microsoft.EntityFrameworkCore.Relational -Version 3.1.2
+Install-Package Microsoft.EntityFrameworkCore.SqlServer -Version 3.1.2
+
+--Criação de Script
+Script-Migration -Context MeuDbContext
+Add-Migration BancoInicial -Context MeuDbContext
+
+
+https://imasters.com.br/dotnet/implementando-location-em-projetos-asp-net-core
+https://andrewlock.net/url-culture-provider-using-middleware-as-mvc-filter-in-asp-net-core-1-1-0/
+
+
+Microsoft.EntityFrameworkCore
+Microsoft.EntityFrameworkCore.Relational

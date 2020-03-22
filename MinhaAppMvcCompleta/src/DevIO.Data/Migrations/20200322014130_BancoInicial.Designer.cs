@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DevIO.Data.Migrations
 {
     [DbContext(typeof(MeuDbContext))]
-    [Migration("20191222151904_BancoInicial")]
+    [Migration("20200322014130_BancoInicial")]
     partial class BancoInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.0")
+                .HasAnnotation("ProductVersion", "3.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -26,6 +26,11 @@ namespace DevIO.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit")
+                        .HasMaxLength(1)
+                        .IsUnicode(false);
 
                     b.Property<string>("Bairro")
                         .IsRequired()
@@ -42,6 +47,12 @@ namespace DevIO.Data.Migrations
                     b.Property<string>("Complemento")
                         .IsRequired()
                         .HasColumnType("varchar(250)");
+
+                    b.Property<DateTime?>("DataAlteracao")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("DataCadastro")
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Estado")
                         .IsRequired()
@@ -73,7 +84,15 @@ namespace DevIO.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("Ativo")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasMaxLength(1)
+                        .IsUnicode(false);
+
+                    b.Property<DateTime?>("DataAlteracao")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("DataCadastro")
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Documento")
                         .IsRequired()
@@ -98,10 +117,18 @@ namespace DevIO.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("Ativo")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasMaxLength(1)
+                        .IsUnicode(false);
 
-                    b.Property<DateTime>("DataCadastro")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTime?>("DataAlteracao")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("DataCadastro")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("DataValidade")
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Descricao")
                         .IsRequired()
@@ -118,8 +145,13 @@ namespace DevIO.Data.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 
+                    b.Property<bool>("ProdutoPromocao")
+                        .HasColumnType("bit")
+                        .HasMaxLength(1)
+                        .IsUnicode(false);
+
                     b.Property<decimal>("Valor")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.HasKey("Id");
 

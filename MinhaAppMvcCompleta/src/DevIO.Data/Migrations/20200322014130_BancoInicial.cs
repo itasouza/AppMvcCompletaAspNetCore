@@ -15,7 +15,9 @@ namespace DevIO.Data.Migrations
                     Nome = table.Column<string>(type: "varchar(100)", nullable: false),
                     Documento = table.Column<string>(type: "varchar(14)", nullable: false),
                     TipoFornecedor = table.Column<int>(nullable: false),
-                    Ativo = table.Column<bool>(nullable: false)
+                    Ativo = table.Column<bool>(unicode: false, maxLength: 1, nullable: false),
+                    DataCadastro = table.Column<DateTime>(type: "datetime", nullable: true),
+                    DataAlteracao = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -34,6 +36,9 @@ namespace DevIO.Data.Migrations
                     Bairro = table.Column<string>(type: "varchar(100)", nullable: false),
                     Cidade = table.Column<string>(type: "varchar(100)", nullable: false),
                     Estado = table.Column<string>(type: "varchar(50)", nullable: false),
+                    Ativo = table.Column<bool>(unicode: false, maxLength: 1, nullable: false),
+                    DataCadastro = table.Column<DateTime>(type: "datetime", nullable: true),
+                    DataAlteracao = table.Column<DateTime>(type: "datetime", nullable: true),
                     FornecedorId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
@@ -55,9 +60,12 @@ namespace DevIO.Data.Migrations
                     Nome = table.Column<string>(type: "varchar(100)", nullable: false),
                     Descricao = table.Column<string>(type: "varchar(1000)", nullable: false),
                     Imagem = table.Column<string>(type: "varchar(100)", nullable: false),
-                    Valor = table.Column<decimal>(nullable: false),
-                    DataCadastro = table.Column<DateTime>(nullable: false),
-                    Ativo = table.Column<bool>(nullable: false),
+                    Valor = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
+                    DataValidade = table.Column<DateTime>(type: "datetime", nullable: true),
+                    ProdutoPromocao = table.Column<bool>(unicode: false, maxLength: 1, nullable: false),
+                    Ativo = table.Column<bool>(unicode: false, maxLength: 1, nullable: false),
+                    DataCadastro = table.Column<DateTime>(type: "datetime", nullable: true),
+                    DataAlteracao = table.Column<DateTime>(type: "datetime", nullable: true),
                     FornecedorId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>

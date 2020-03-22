@@ -17,6 +17,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
+    <PackageReference Include="X.PagedList.Mvc.Core" Version="7.9.1" />
   </ItemGroup>
 
 
@@ -26,7 +27,34 @@
 
 
   <ItemGroup>
+    <Folder Include="Extensions\" />
     <Folder Include="wwwroot\ImagensPerfil\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Compile Update="Language\Mensagem.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Mensagem.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Language\Traducao.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Traducao.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <EmbeddedResource Update="Language\Mensagem.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Mensagem.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Language\Traducao.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Traducao.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

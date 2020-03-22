@@ -5,12 +5,11 @@ using DevIO.Business.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace DevIO.App.Controllers
 {
-
     public class FornecedoresController : BaseController
     {
         private readonly IFornecedorRepository _fornecedorRepository;
@@ -23,23 +22,63 @@ namespace DevIO.App.Controllers
         }
 
         // GET: Fornecedores
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string TextoPesquisa = null,
+                                               int valorSelecao = 0,
+                                               DateTime? DataInicial = null,
+                                               DateTime? DataFinal = null,
+                                               int pagina = 1,
+                                               int tamanhoPagina = 10)
         {
-            return View(_mapper.Map<IEnumerable<FornecedorViewModel>>(await _fornecedorRepository.ObterTodos()));
-        }
+            //retorna o que foi selecionado
 
-
-        public async Task<IActionResult> Details(Guid id)
-        {
-
-            var fornecedorViewModel = await ObterFornecedorEndereco(id);
-            if (fornecedorViewModel == null)
+            if (TextoPesquisa != null)
             {
-                return NotFound();
+                ViewBag.TextoPesquisa = TextoPesquisa;
+                ViewBag.show = "show";
             }
 
-            return View(fornecedorViewModel);
+            if (valorSelecao >= 0)
+                ViewBag.valorSelecao = valorSelecao;
+            if (DataInicial != null)
+                ViewBag.DataInicial = DataInicial;
+            if (DataFinal != null)
+                ViewBag.DataFinal = DataFinal;
+
+            if (valorSelecao >= 0)
+            {
+                if (TextoPesquisa != null && valorSelecao == 1)
+                {
+                    var consulta = await _mapper.Map<IEnumerable<FornecedorViewModel>>(
+                                                 await _fornecedorRepository.Buscar(p => p.Nome.Contains(TextoPesquisa)))
+                                                .ToPagedListAsync(pagina, tamanhoPagina);
+                    ViewBag.TamanhoPagina = tamanhoPagina;
+                    return View(consulta);
+                }
+
+                if (TextoPesquisa != null && valorSelecao == 2)
+                {
+                    var consulta = await _mapper.Map<IEnumerable<FornecedorViewModel>>(
+                                                 await _fornecedorRepository.Buscar(p => p.Documento.Contains(TextoPesquisa)))
+                                                .ToPagedListAsync(pagina, tamanhoPagina);
+                    ViewBag.TamanhoPagina = tamanhoPagina;
+                    return View(consulta);
+                }
+
+                if (TextoPesquisa != null && valorSelecao == 3)
+                {
+
+                }
+
+            }
+
+
+            var dados = await _mapper.Map<IEnumerable<FornecedorViewModel>>(
+                                     await _fornecedorRepository.ObterTodos())
+                                     .ToPagedListAsync(pagina, tamanhoPagina);
+            ViewBag.TamanhoPagina = tamanhoPagina;
+            return View(dados);
         }
+
 
         // GET: Fornecedores/Create
         public IActionResult Create()
@@ -53,8 +92,18 @@ namespace DevIO.App.Controllers
         {
             if (!ModelState.IsValid) return View(fornecedorViewModel);
 
-            var dados = _mapper.Map<Fornecedor>(fornecedorViewModel);
-            await _fornecedorRepository.Adicionar(dados);
+            try
+            {
+                var dados = _mapper.Map<Fornecedor>(fornecedorViewModel);
+                await _fornecedorRepository.Adicionar(dados);
+                TempData["msg"] = "O Cadastro foi realizado com sucesso";
+            }
+            catch (Exception ex)
+            {
+                TempData["Erro"] = "Não foi possivel gravar o registro." + ex.Message;
+                return RedirectToAction(nameof(Index));
+                throw;
+            }
 
             return RedirectToAction(nameof(Index));
 
@@ -80,25 +129,27 @@ namespace DevIO.App.Controllers
 
             if (!ModelState.IsValid) return View(fornecedorViewModel);
 
-            var dados = _mapper.Map<Fornecedor>(fornecedorViewModel);
-            await _fornecedorRepository.Atualizar(dados);
-
-            return RedirectToAction(nameof(Index));
-       
-        }
-
-
-        public async Task<IActionResult> Delete(Guid id)
-        {
-            var fornecedorViewModel = await ObterFornecedorEndereco(id);
-
-            if (fornecedorViewModel == null)
+            try
             {
-                return NotFound();
+                var dados = _mapper.Map<Fornecedor>(fornecedorViewModel);
+                await _fornecedorRepository.Atualizar(dados);
+                TempData["msg"] = "O Cadastro foi atualizado com sucesso";
+            }
+            catch (Exception ex)
+            {
+
+                TempData["Erro"] = "Não foi possivel atualizar o registro." + ex.Message;
+                return RedirectToAction(nameof(Index));
+                throw;
             }
 
-            return View(fornecedorViewModel);
+
+
+            return RedirectToAction(nameof(Index));
+
         }
+
+
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -106,7 +157,21 @@ namespace DevIO.App.Controllers
         {
             var fornecedorViewModel = await ObterFornecedorEndereco(id);
             if (fornecedorViewModel == null) return NotFound();
-            await _fornecedorRepository.Remover(id);
+
+            try
+            {
+                await _fornecedorRepository.Remover(id);
+                TempData["msg"] = "O Registro foi removido com sucesso";
+            }
+            catch (Exception ex)
+            {
+
+                TempData["Erro"] = "Não foi possivel remover o registro." + ex.Message;
+                return RedirectToAction(nameof(Index));
+                throw;
+            }
+
+           
             return RedirectToAction(nameof(Index));
         }
 

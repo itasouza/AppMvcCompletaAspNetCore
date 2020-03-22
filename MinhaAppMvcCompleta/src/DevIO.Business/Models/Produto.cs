@@ -11,6 +11,9 @@ namespace DevIO.Business.Models
         public string Imagem { get; set; }
         public decimal Valor { get; set; }
 
+        public DateTime? DataValidade { get; set; }
+        public bool ProdutoPromocao { get; set; }
+
         public bool Ativo { get; set; }
         public DateTime? DataCadastro { get; set; }
         public DateTime? DataAlteracao { get; set; }
