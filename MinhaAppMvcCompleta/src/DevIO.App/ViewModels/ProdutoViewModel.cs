@@ -1,4 +1,5 @@
-﻿using DevIO.App.Language;
+﻿using DevIO.App.Extensions;
+using DevIO.App.Language;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -44,7 +45,7 @@ namespace DevIO.App.ViewModels
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public bool ProdutoPromocao { get; set; }
 
-
+        [Moeda]
         [Display(ResourceType = typeof(Traducao), Name = "ValorProduto")]
         [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
         public decimal Valor { get; set; }

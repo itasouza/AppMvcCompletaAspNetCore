@@ -71,7 +71,7 @@
                                                 <div class="col-sm-12">
                                                     <div class="media">
                                                         <span class="float-left m-2 mr-4">
-                                                            <img id="imagem" src="~/lib/images/avatar-foto.jpg"
+                                                            <img id="imagem" src="~/assets/images/users/avatar-foto.jpg"
                                                                  alt="Foto perfil"
                                                                  class="rounded-circle img-thumbnail">
                                                         </span>
@@ -93,13 +93,14 @@
                             <!--fim de foto perfil-->
 
                             <div class="row">
+
                                 <div class="col-sm-5">
                                     <label asp-for="Valor" class="control-label"></label>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">R$</span>
                                         </div>
-                                        <input asp-for="Valor" class="form-control" />
+                                        <input type="text" asp-for="Valor" class="form-control campovalor" />
                                         <span asp-validation-for="Valor" class="text-danger"></span>
                                     </div>
                                 </div>
