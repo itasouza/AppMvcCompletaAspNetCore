@@ -66,7 +66,7 @@ namespace DevIO.App.Controllers
 
                 if (TextoPesquisa != null && valorSelecao == 3)
                 {
-
+                    //TODO - falta implementar consulta por data
                 }
 
             }
@@ -126,8 +126,8 @@ namespace DevIO.App.Controllers
         public async Task<IActionResult> Edit(Guid id, FornecedorViewModel fornecedorViewModel)
         {
             if (id != fornecedorViewModel.Id) return NotFound();
-
             if (!ModelState.IsValid) return View(fornecedorViewModel);
+           
 
             try
             {

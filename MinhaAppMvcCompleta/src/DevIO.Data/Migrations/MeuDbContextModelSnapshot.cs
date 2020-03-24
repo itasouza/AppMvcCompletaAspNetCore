@@ -136,7 +136,6 @@ namespace DevIO.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Imagem")
-                        .IsRequired()
                         .HasColumnType("varchar(100)");
 
                     b.Property<string>("Nome")

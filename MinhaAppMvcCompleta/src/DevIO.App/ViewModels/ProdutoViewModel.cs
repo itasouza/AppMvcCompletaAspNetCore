@@ -1,5 +1,7 @@
 ﻿using DevIO.App.Language;
+using Microsoft.AspNetCore.Http;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace DevIO.App.ViewModels
@@ -13,7 +15,7 @@ namespace DevIO.App.ViewModels
 
         [Display(ResourceType = typeof(Traducao), Name = "NomeProduto")]
         [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
-        [MinLength(200, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E002")]
+        [MinLength(10, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E002")]
         public string Nome { get; set; }
 
 
@@ -24,8 +26,8 @@ namespace DevIO.App.ViewModels
         public string Descricao { get; set; }
 
 
-        //[Display(ResourceType = typeof(Traducao), Name = "ImagemProduto")]
-        //public IFormFile ImagemUpload { get; set; }
+        [Display(ResourceType = typeof(Traducao), Name = "ImagemProduto")]
+        public IFormFile ImagemUpload { get; set; }
 
         [Display(ResourceType = typeof(Traducao), Name = "ImagemProduto")]
         public string Imagem { get; set; }
@@ -70,6 +72,8 @@ namespace DevIO.App.ViewModels
 
         public FornecedorViewModel Fornecedor { get; set; }
 
+        //Lista de Forncedores para o cadastro de produto
+        public IEnumerable<FornecedorViewModel> Fornecedores { get; set; }
 
     }
 }

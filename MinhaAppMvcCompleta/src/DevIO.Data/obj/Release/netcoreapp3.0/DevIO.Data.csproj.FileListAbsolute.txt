@@ -1,0 +1,11 @@
+C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.Data\bin\Release\netcoreapp3.0\DevIO.Data.deps.json
+C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.Data\bin\Release\netcoreapp3.0\DevIO.Data.dll
+C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.Data\bin\Release\netcoreapp3.0\DevIO.Data.pdb
+C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.Data\bin\Release\netcoreapp3.0\DevIO.Business.dll
+C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.Data\bin\Release\netcoreapp3.0\DevIO.Business.pdb
+C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.Data\obj\Release\netcoreapp3.0\DevIO.Data.csprojAssemblyReference.cache
+C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.Data\obj\Release\netcoreapp3.0\DevIO.Data.AssemblyInfoInputs.cache
+C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.Data\obj\Release\netcoreapp3.0\DevIO.Data.AssemblyInfo.cs
+C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.Data\obj\Release\netcoreapp3.0\DevIO.Data.csproj.CopyComplete
+C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.Data\obj\Release\netcoreapp3.0\DevIO.Data.dll
+C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.Data\obj\Release\netcoreapp3.0\DevIO.Data.pdb
