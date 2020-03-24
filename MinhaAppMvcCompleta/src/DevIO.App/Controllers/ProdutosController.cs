@@ -54,7 +54,34 @@ namespace DevIO.App.Controllers
 
             if (valorSelecao >= 0)
             {
+                if (TextoPesquisa != null && valorSelecao == 1)
+                {
+                    var consulta = await _mapper.Map<IEnumerable<ProdutoViewModel>>(
+                                                 await _produtoRepository.BuscarProdutosFornecedores(p => p.Nome.Contains(TextoPesquisa)))
+                                                .ToPagedListAsync(pagina, tamanhoPagina);
+                    ViewBag.TamanhoPagina = tamanhoPagina;
+                    return View(consulta);
+                }
 
+                if (TextoPesquisa != null && valorSelecao == 2)
+                {
+                    var consulta = await _mapper.Map<IEnumerable<ProdutoViewModel>>(
+                             await _produtoRepository.BuscarProdutosFornecedores(p => p.Fornecedor.Nome.Contains(TextoPesquisa)))
+                            .ToPagedListAsync(pagina, tamanhoPagina);
+
+                    ViewBag.TamanhoPagina = tamanhoPagina;
+                    return View(consulta);
+                }
+
+                if (valorSelecao == 3)
+                {
+                    var consulta = await _mapper.Map<IEnumerable<ProdutoViewModel>>(
+                             await _produtoRepository.BuscarProdutosFornecedores(p => p.DataCadastro >= DataInicial && p.DataCadastro <= DataFinal))
+                            .ToPagedListAsync(pagina, tamanhoPagina);
+
+                    ViewBag.TamanhoPagina = tamanhoPagina;
+                    return View(consulta);
+                }
             }
 
             var dados = await _mapper.Map<IEnumerable<ProdutoViewModel>>(
@@ -123,8 +150,6 @@ namespace DevIO.App.Controllers
         {
             if (id != produtoViewModel.Id) return NotFound();
             if (!ModelState.IsValid) return View(produtoViewModel);
-            var produto = _mapper.Map<ProdutoViewModel>(await _produtoRepository.ObterProdutoFornecedor(id));
-            produtoViewModel.Imagem = produto.Imagem;
 
             //se tiver imagem nova, vou sobrescrever
             var imgPrefixo = Guid.NewGuid() + "_";

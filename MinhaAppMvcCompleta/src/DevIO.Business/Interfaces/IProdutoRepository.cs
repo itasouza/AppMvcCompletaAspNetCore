@@ -1,6 +1,7 @@
 ﻿using DevIO.Business.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +11,9 @@ namespace DevIO.Business.Interfaces
     {
         Task<IEnumerable<Produto>> ObterProdutosPorFornecedor(Guid fornecedorId);
         Task<IEnumerable<Produto>> ObterProdutosFornecedores();
+
+        Task<IEnumerable<Produto>> BuscarProdutosFornecedores(Expression<Func<Produto, bool>> predicate);
+
         Task<Produto> ObterProdutoFornecedor(Guid id);
     }
 }

@@ -64,9 +64,14 @@ namespace DevIO.App.Controllers
                     return View(consulta);
                 }
 
-                if (TextoPesquisa != null && valorSelecao == 3)
+                if (valorSelecao == 3)
                 {
-                    //TODO - falta implementar consulta por data
+                    var consulta = await _mapper.Map<IEnumerable<FornecedorViewModel>>(
+                             await _fornecedorRepository.Buscar(p => p.DataCadastro >= DataInicial && p.DataCadastro <= DataFinal))
+                            .ToPagedListAsync(pagina, tamanhoPagina);
+
+                    ViewBag.TamanhoPagina = tamanhoPagina;
+                    return View(consulta);
                 }
 
             }

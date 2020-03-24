@@ -16,6 +16,8 @@ namespace DevIO.Data.Repository
 
         public ProdutoRepository(MeuDbContext context) : base(context) { }
 
+
+
         public async Task<Produto> ObterProdutoFornecedor(Guid id)
         {
             return await Db.Produtos.AsNoTracking().Include(f => f.Fornecedor)
@@ -26,6 +28,11 @@ namespace DevIO.Data.Repository
         {
             return await Db.Produtos.AsNoTracking().Include(f => f.Fornecedor)
                 .OrderBy(p => p.Nome).ToListAsync();
+        }
+
+        public async Task<IEnumerable<Produto>> BuscarProdutosFornecedores(Expression<Func<Produto, bool>> predicate)
+        {
+            return await Db.Produtos.AsNoTracking().Include(f => f.Fornecedor).Where(predicate).ToListAsync();
         }
 
         public async Task<IEnumerable<Produto>> ObterProdutosPorFornecedor(Guid fornecedorId)

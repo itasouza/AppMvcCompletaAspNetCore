@@ -135,6 +135,7 @@
                                             <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Nome)</th>
                                             <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Fornecedor.Nome)</th>
                                             <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Valor)</th>
+                                            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().DataCadastro)</th>
                                             <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Ativo)</th>
                                             <th>Ações</th>
 
@@ -145,42 +146,46 @@
                                         @foreach (var item in Model)
                                         {
 
-                                            <tr>
+                                        <tr>
 
-                                                @if (item.Imagem != null)
-                                                {
-                                                    <td class="table-user">
-                                                        <img src="@Url.Content("~/imagensPerfil/" + item.Imagem)" alt="table-user" class="mr-2 rounded-circle" />
-                                                        @Html.DisplayFor(modelItem => item.Nome)
-                                                    </td>
-                                                }
-                                                else
-                                                {
-                                                    <td class="table-user">
-                                                        <img src="~/assets/images/users/avatar-foto.jpg" alt="table-user" class="mr-2 rounded-circle" />
-                                                        @Html.DisplayFor(modelItem => item.Nome)
-                                                    </td>
-
-                                                }
-
-                                                <td>
+                                            @if (item.Imagem != null)
+                                            {
+                                                <td class="table-user">
+                                                    <img src="@Url.Content("~/imagensPerfil/" + item.Imagem)" alt="table-user" class="mr-2 rounded-circle" />
                                                     @Html.DisplayFor(modelItem => item.Nome)
                                                 </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Fornecedor.Nome)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Valor)
+                                            }
+                                            else
+                                            {
+                                                <td class="table-user">
+                                                    <img src="~/assets/images/users/avatar-foto.jpg" alt="table-user" class="mr-2 rounded-circle" />
+                                                    @Html.DisplayFor(modelItem => item.Nome)
                                                 </td>
 
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Ativo)
-                                                </td>
-                                                <td class="table-action">
-                                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar"><i class="mdi mdi-pencil"></i> </a>
-                                                    <a class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Deletar" onclick="ExibirModal('@item.Id','@item.Nome','@controller')"><i class="mdi mdi-delete"></i> </a>
-                                                </td>
-                                            </tr>
+                                            }
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Nome)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Fornecedor.Nome)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Valor)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DataCadastro)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Ativo)
+                                            </td>
+                                            <td class="table-action">
+                                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar"><i class="mdi mdi-pencil"></i> </a>
+                                                <a class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Deletar" onclick="ExibirModal('@item.Id','@item.Nome','@controller')"><i class="mdi mdi-delete"></i> </a>
+                                            </td>
+                                        </tr>
 
                                         }
 
