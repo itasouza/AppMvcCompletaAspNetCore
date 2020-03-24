@@ -925,3 +925,4 @@ C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.App\obj\Debug\netc
 C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.App\obj\Debug\netcoreapp3.0\Razor\Views\Produtos\Create.cshtml.g.cs
 C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.App\obj\Debug\netcoreapp3.0\Razor\Views\Produtos\Edit.cshtml.g.cs
 C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.App\obj\Debug\netcoreapp3.0\Razor\Views\Produtos\Index.cshtml.g.cs
+C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.App\obj\Debug\netcoreapp3.0\Razor\Views\Fornecedores\_Endereco.cshtml.g.cs

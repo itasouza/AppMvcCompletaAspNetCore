@@ -13,8 +13,8 @@ namespace DevIO.App.Data
             : base(options)
         {
         }
-        public DbSet<DevIO.App.ViewModels.ProdutoViewModel> ProdutoViewModel { get; set; }
-       
+        public DbSet<DevIO.App.ViewModels.EnderecoViewModel> EnderecoViewModel { get; set; }
+      
         
 
     }
