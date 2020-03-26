@@ -83,7 +83,7 @@
 
                                                         <div class="form-group mb-3">
                                                             <label for="datafinal">Data Final</label>
-                                                            <input type="text" class="form-control datepicker" id="datafinal" name="DataFinal" data-provide="datepicker"
+                                                            <input type="text" class="form-control datepicker " id="datafinal" name="DataFinal" data-provide="datepicker"
                                                                    data-date-autoclose="true" placeholder="Data final" value="@ViewBag.DataFinal" />
                                                         </div>
 
@@ -138,6 +138,7 @@
                                             <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Documento)</th>
                                             <th>@Html.DisplayNameFor(model => model.FirstOrDefault().TipoFornecedor)</th>
                                             <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Ativo)</th>
+                                            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().DataCadastro)</th>
                                             <th>Ações</th>
 
                                         </tr>
@@ -158,7 +159,7 @@
 
                                             @if (item.TipoFornecedor == 1)
                                             {
-                                               
+
                                                 <td><span class="badge badge-warning">Pessoa Física</span></td>
                                             }
                                             else
@@ -169,6 +170,11 @@
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Ativo)
                                             </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DataCadastro)
+                                            </td>
+
                                             <td class="table-action">
                                                 <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar"><i class="mdi mdi-pencil"></i> </a>
                                                 <a class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Deletar" onclick="ExibirModal('@item.Id','@item.Nome','@controller')"><i class="mdi mdi-delete"></i> </a>

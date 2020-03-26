@@ -17,7 +17,6 @@ C:\src\AppMvcCompleta\MinhaAppMvcCompleta\src\DevIO.Business\obj\Debug\netcoreap
 C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.Business\bin\Debug\netcoreapp3.0\DevIO.Business.deps.json
 C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.Business\bin\Debug\netcoreapp3.0\DevIO.Business.dll
 C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.Business\bin\Debug\netcoreapp3.0\DevIO.Business.pdb
-C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.Business\obj\Debug\netcoreapp3.0\DevIO.Business.csprojAssemblyReference.cache
 C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.Business\obj\Debug\netcoreapp3.0\DevIO.Business.AssemblyInfoInputs.cache
 C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.Business\obj\Debug\netcoreapp3.0\DevIO.Business.AssemblyInfo.cs
 C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.Business\obj\Debug\netcoreapp3.0\DevIO.Business.dll
