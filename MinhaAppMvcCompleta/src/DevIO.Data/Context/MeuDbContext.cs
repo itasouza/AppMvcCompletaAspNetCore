@@ -1,5 +1,6 @@
 ﻿using DevIO.Business.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,9 @@ namespace DevIO.Data.Context
 {
     public class MeuDbContext:DbContext
     {
+
+
+
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Fornecedor> Fornecedores { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
@@ -19,7 +23,6 @@ namespace DevIO.Data.Context
         {
 
         }
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

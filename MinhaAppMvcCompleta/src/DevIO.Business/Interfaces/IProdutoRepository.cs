@@ -12,7 +12,7 @@ namespace DevIO.Business.Interfaces
         Task<IEnumerable<Produto>> ObterProdutosPorFornecedor(Guid fornecedorId);
         Task<IEnumerable<Produto>> ObterProdutosFornecedores();
 
-        Task<IEnumerable<Produto>> BuscarProdutosFornecedores(Expression<Func<Produto, bool>> predicate);
+        Task<IEnumerable<Produto>> BuscarProdutosFornecedores(Expression<Func<Produto, bool>> predicate = null);
 
         Task<Produto> ObterProdutoFornecedor(Guid id);
     }

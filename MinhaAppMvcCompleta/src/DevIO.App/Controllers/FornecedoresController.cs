@@ -24,12 +24,15 @@ namespace DevIO.App.Controllers
         // GET: Fornecedores
         public async Task<IActionResult> Index(string TextoPesquisa = null,
                                                int valorSelecao = 0,
-                                               DateTime? DataInicial = null,
-                                               DateTime? DataFinal = null,
+                                               string DataInicial = null,
+                                               string DataFinal = null,
                                                int pagina = 1,
                                                int tamanhoPagina = 10)
         {
             //retorna o que foi selecionado
+            DateTime? dataInicio = null;
+            DateTime? dataFinal = null;
+
 
             if (TextoPesquisa != null)
             {
@@ -39,10 +42,17 @@ namespace DevIO.App.Controllers
 
             if (valorSelecao >= 0)
                 ViewBag.valorSelecao = valorSelecao;
+
             if (DataInicial != null)
+            {
                 ViewBag.DataInicial = DataInicial;
+                dataInicio = Convert.ToDateTime(DataInicial).AddHours(0).AddMinutes(00).AddSeconds(00);
+            }
             if (DataFinal != null)
+            {
                 ViewBag.DataFinal = DataFinal;
+                dataFinal = Convert.ToDateTime(DataFinal).AddHours(23).AddMinutes(59).AddSeconds(59);
+            }
 
             if (valorSelecao >= 0)
             {
@@ -64,10 +74,10 @@ namespace DevIO.App.Controllers
                     return View(consulta);
                 }
 
-                if (valorSelecao == 3)
+                if (valorSelecao == 3 && DataInicial != null && DataFinal != null)
                 {
                     var consulta = await _mapper.Map<IEnumerable<FornecedorViewModel>>(
-                             await _fornecedorRepository.Buscar(p => p.DataCadastro >= DataInicial && p.DataCadastro <= DataFinal))
+                             await _fornecedorRepository.Buscar(p => p.DataCadastro >= dataInicio && p.DataCadastro <= dataFinal))
                             .ToPagedListAsync(pagina, tamanhoPagina);
 
                     ViewBag.TamanhoPagina = tamanhoPagina;

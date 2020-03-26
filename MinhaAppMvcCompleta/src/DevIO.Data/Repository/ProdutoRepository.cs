@@ -28,11 +28,17 @@ namespace DevIO.Data.Repository
         {
             return await Db.Produtos.AsNoTracking().Include(f => f.Fornecedor)
                 .OrderBy(p => p.Nome).ToListAsync();
+
         }
 
-        public async Task<IEnumerable<Produto>> BuscarProdutosFornecedores(Expression<Func<Produto, bool>> predicate)
+        public async Task<IEnumerable<Produto>> BuscarProdutosFornecedores(Expression<Func<Produto, bool>> predicate = null)
         {
-            return await Db.Produtos.AsNoTracking().Include(f => f.Fornecedor).Where(predicate).ToListAsync();
+            var query = Db.Produtos.AsNoTracking().Include(f => f.Fornecedor).AsQueryable();
+
+            if (predicate != null)
+                query = query.Where(predicate);
+
+            return await query.ToListAsync();
         }
 
         public async Task<IEnumerable<Produto>> ObterProdutosPorFornecedor(Guid fornecedorId)

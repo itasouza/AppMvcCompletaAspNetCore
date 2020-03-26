@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using X.PagedList;
 
@@ -30,14 +31,17 @@ namespace DevIO.App.Controllers
 
         public async Task<IActionResult> Index(string TextoPesquisa = null,
                                                int valorSelecao = 0,
-                                               DateTime? DataInicial = null,
-                                               DateTime? DataFinal = null,
+                                               string DataInicial = null,
+                                               string DataFinal = null,
                                                int pagina = 1,
                                                int tamanhoPagina = 10)
         {
 
 
             //retorna o que foi selecionado
+            DateTime? dataInicio = null;
+            DateTime? dataFinal = null;
+
 
             if (TextoPesquisa != null)
             {
@@ -45,12 +49,20 @@ namespace DevIO.App.Controllers
                 ViewBag.show = "show";
             }
 
+
             if (valorSelecao >= 0)
                 ViewBag.valorSelecao = valorSelecao;
+
             if (DataInicial != null)
+            {
                 ViewBag.DataInicial = DataInicial;
+                dataInicio = Convert.ToDateTime(DataInicial).AddHours(0).AddMinutes(00).AddSeconds(00);
+            }
             if (DataFinal != null)
+            {
                 ViewBag.DataFinal = DataFinal;
+                dataFinal = Convert.ToDateTime(DataFinal).AddHours(23).AddMinutes(59).AddSeconds(59);
+            }
 
             if (valorSelecao >= 0)
             {
@@ -75,9 +87,15 @@ namespace DevIO.App.Controllers
 
                 if (valorSelecao == 3)
                 {
+                    Expression<Func<Produto, bool>> filtro = null;
+
+                    if (dataInicio.HasValue && dataFinal.HasValue)
+                        filtro = p => p.DataCadastro >= dataInicio && p.DataCadastro <= dataFinal;
+
+
                     var consulta = await _mapper.Map<IEnumerable<ProdutoViewModel>>(
-                             await _produtoRepository.BuscarProdutosFornecedores(p => p.DataCadastro >= DataInicial && p.DataCadastro <= DataFinal))
-                            .ToPagedListAsync(pagina, tamanhoPagina);
+                                 await _produtoRepository.BuscarProdutosFornecedores(filtro))
+                                .ToPagedListAsync(pagina, tamanhoPagina);
 
                     ViewBag.TamanhoPagina = tamanhoPagina;
                     return View(consulta);

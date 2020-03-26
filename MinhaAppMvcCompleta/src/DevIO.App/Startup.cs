@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -50,10 +51,12 @@ namespace DevIO.App
             //configurando o AutoMapper
             services.AddAutoMapper(typeof(Startup));
 
+            //validações usando o MvcConfig
+            services.AddMvcConfiguration();
+
             //configurando o referência do IRepository com o Data Repository (Injeção de dependência)
             services.ResolveDependencies();
 
-     
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -79,6 +82,9 @@ namespace DevIO.App
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            //usar a globalização
+            app.UseGlobalizationConfig();
 
             app.UseEndpoints(endpoints =>
             {

@@ -1,6 +1,8 @@
 ﻿
 $(document).ready(function () {
     definirDatePicker();
+    $('.campovalor').mask('#.##0,00', { reverse: true });
+
 });
 
 
