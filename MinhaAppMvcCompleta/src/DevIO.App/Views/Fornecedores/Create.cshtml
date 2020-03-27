@@ -31,13 +31,19 @@
                                 <span asp-validation-for="Documento" class="text-danger"></span>
                             </div>
 
-                            <div class="form-group">
+
+                            <div class="form-group mt-3">
                                 <label asp-for="TipoFornecedor" class="control-label"></label><br />
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" value="1" asp-for="TipoFornecedor" checked /> Pessoa Física<br />
-                                    <input type="radio" value="2" asp-for="TipoFornecedor" /> Pessoa Jurídica
+                                    <input type="radio" id="customRadio1" value="1" name="customRadio" class="custom-control-input" asp-for="TipoFornecedor" checked >
+                                    <label class="custom-control-label" for="customRadio1">Pessoa Física</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="customRadio2" value="2" name="customRadio" class="custom-control-input" asp-for="TipoFornecedor">
+                                    <label class="custom-control-label" for="customRadio2">Pessoa Júridica</label>
                                 </div>
                             </div>
+
 
                             <div class="form-group">
 

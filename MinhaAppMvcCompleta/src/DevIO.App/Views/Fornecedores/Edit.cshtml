@@ -36,22 +36,14 @@
                             <div class="form-group">
                                 <label asp-for="TipoFornecedor" class="control-label"></label><br />
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" value="1" asp-for="TipoFornecedor" checked /> Pessoa Física<br />
-                                    <input type="radio" value="2" asp-for="TipoFornecedor" /> Pessoa Jurídica
-                                </div>
-                            </div>
-
-                            @*<div class="form-group">
-                                <label asp-for="TipoFornecedor" class="control-label"></label><br />
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" value="1" id="customRadio1" asp-for="TipoFornecedor" checked name="customRadio" class="custom-control-input">
+                                    <input type="radio" value="1" id="customRadio1" asp-for="TipoFornecedor" checked="@(Model.TipoFornecedor == 1)" class="custom-control-input">
                                     <label class="custom-control-label" for="customRadio1">Pessoa Física</label>
                                 </div>
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" value="2" id="customRadio2" asp-for="TipoFornecedor" name="customRadio" class="custom-control-input">
+                                    <input type="radio" value="2" id="customRadio2" asp-for="TipoFornecedor" checked="@(Model.TipoFornecedor == 2)" class="custom-control-input">
                                     <label class="custom-control-label" for="customRadio2">Pessoa Júridica</label>
                                 </div>
-                            </div>*@
+                            </div>
 
                             <div class="form-group">
 
@@ -77,9 +69,30 @@
 
 </div>
 
+<div id="EnderecoTarget">
+    <partial name="_DetalhesEndereco" />
+</div>
+
+<!--vai mostrar o conteúdo para edição do endereço-->
+<div id="myModal" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="primary-header-modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id="myModalContent"></div>
+        </div>
+    </div>
+</div>
+
+
 
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $(document).ready(function () {
+            AjaxModal();
+        });
+    </script>
+
 }
 

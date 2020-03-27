@@ -123,6 +123,9 @@ namespace DevIO.App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProdutoViewModel produtoViewModel)
         {
+            //TODO adicionar select2 para consulta do fornecedor no cadastro de produto
+            //TODO fazer o filtro para o select 2
+
             produtoViewModel = await PopularFornecedores(produtoViewModel);
             if (!ModelState.IsValid) return View(produtoViewModel);
 

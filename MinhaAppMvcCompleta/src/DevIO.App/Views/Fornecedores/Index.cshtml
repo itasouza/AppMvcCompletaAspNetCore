@@ -1,6 +1,7 @@
 ﻿@model X.PagedList.IPagedList<DevIO.App.ViewModels.FornecedorViewModel>
 @using X.PagedList.Mvc.Core
 @using X.PagedList.Mvc.Common
+@using DevIO.App.Extensions
 
 @{
     ViewData["Title"] = "Lista de Fornecedor";
@@ -153,7 +154,7 @@
                                                     @Html.DisplayFor(modelItem => item.Nome)
                                                 </td>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.Documento)
+                                                    @this.FormataDocumento(item.TipoFornecedor,  item.Documento)
                                                 </td>
 
 
