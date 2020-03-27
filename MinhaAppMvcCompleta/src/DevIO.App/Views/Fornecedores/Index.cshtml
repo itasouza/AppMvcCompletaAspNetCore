@@ -148,38 +148,38 @@
                                         @foreach (var item in Model)
                                         {
 
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Nome)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Documento)
-                                            </td>
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Nome)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Documento)
+                                                </td>
 
 
-                                            @if (item.TipoFornecedor == 1)
-                                            {
+                                                @if (item.TipoFornecedor == 1)
+                                                {
 
-                                                <td><span class="badge badge-warning">Pessoa Física</span></td>
-                                            }
-                                            else
-                                            {
-                                                <td><span class="badge badge-success">Pessoa Jurídica</span></td>
-                                            }
+                                                    <td><span class="badge badge-warning">Pessoa Física</span></td>
+                                                }
+                                                else
+                                                {
+                                                    <td><span class="badge badge-success">Pessoa Jurídica</span></td>
+                                                }
 
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Ativo)
-                                            </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Ativo)
+                                                </td>
 
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.DataCadastro)
-                                            </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.DataCadastro)
+                                                </td>
 
-                                            <td class="table-action">
-                                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar"><i class="mdi mdi-pencil"></i> </a>
-                                                <a class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Deletar" onclick="ExibirModal('@item.Id','@item.Nome','@controller')"><i class="mdi mdi-delete"></i> </a>
-                                            </td>
-                                        </tr>
+                                                <td class="table-action">
+                                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar"><i class="mdi mdi-pencil"></i> </a>
+                                                    <a class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Deletar" onclick="ExibirModal('@item.Id','@item.Nome','@controller')"><i class="mdi mdi-delete"></i> </a>
+                                                </td>
+                                            </tr>
 
                                         }
 
@@ -221,6 +221,9 @@
 
 
 @section Scripts {
+
+    
+
     <script>
 
 
@@ -243,7 +246,7 @@
                     url: urlCompleto,
                     data: { id: idRecebido },
                     success: function (data) {
-                        console.log(data);
+                        //console.log(data);
                         $(".modal").modal("hide");
                         location.reload(true);
                     }

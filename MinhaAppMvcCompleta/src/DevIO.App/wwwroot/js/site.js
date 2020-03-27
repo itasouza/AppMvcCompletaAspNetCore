@@ -32,6 +32,9 @@ function ConverteParaData(data) {
 }
 
 
+
+
+
 function ErroSweetalert() {
     swal({
         position: 'top-end',
