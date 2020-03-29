@@ -109,7 +109,7 @@ namespace DevIO.App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(FornecedorViewModel fornecedorViewModel)
         {
-
+            //TODO - o tipo de fornecedor não está gravando
             if (!ModelState.IsValid) return View(fornecedorViewModel);
 
 
@@ -178,22 +178,36 @@ namespace DevIO.App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            //TODO - verificar problema da exclusão
-            var fornecedorViewModel = await ObterFornecedorEndereco(id);
+            bool Excluir = true;
+            var fornecedorViewModel = await ObterFornecedorProdutosEndereco(id);
             if (fornecedorViewModel == null) return NotFound();
 
             try
             {
-               //remover o endereço
+               //se tiver endereço, ele precisa ser removido antes 
                if(fornecedorViewModel.Endereco != null)
                 {
                     Guid IdEndereco = fornecedorViewModel.Endereco.Id;
                     await _enderecoRepository.Remover(IdEndereco);
                 }
 
-                //remover o fornecedor
-                await _fornecedorRepository.Remover(id);
-                TempData["msg"] = fornecedorViewModel.Nome + " foi excluido com sucesso."; 
+               //se tiver produto, precisa avisa que não pode excluir o fornecedor
+                foreach (var item in fornecedorViewModel.Produtos)
+                {
+                    if(item.Id != null)
+                    {
+                        Excluir = false;
+                        TempData["Erro"] = "Não foi possivel remover o registro porque ele está sendo usado em um produto";
+                    }
+                }
+
+                if (Excluir)
+                {
+                    //remover o fornecedor
+                    await _fornecedorRepository.Remover(id);
+                    TempData["msg"] = fornecedorViewModel.Nome + " foi excluido com sucesso.";
+                }
+
             }
             catch (Exception ex)
             {
