@@ -13,6 +13,7 @@ using X.PagedList;
 
 namespace DevIO.App.Controllers
 {
+
     public class ProdutosController : BaseController
     {
         private readonly IProdutoRepository _produtoRepository;
@@ -28,7 +29,7 @@ namespace DevIO.App.Controllers
         }
 
 
-
+        [Route("Produtos/lista-de-produtos")]
         public async Task<IActionResult> Index(string TextoPesquisa = null,
                                                int valorSelecao = 0,
                                                string DataInicial = null,
@@ -110,7 +111,7 @@ namespace DevIO.App.Controllers
 
         }
 
-
+        [Route("Produtos/criar-novo-produto")]
         public async Task<IActionResult> Create()
         {
             var ProdutoViewModel = await PopularFornecedores(new ProdutoViewModel());
@@ -118,7 +119,7 @@ namespace DevIO.App.Controllers
         }
 
 
-
+        [Route("Produtos/criar-novo-produto")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProdutoViewModel produtoViewModel)
@@ -153,7 +154,7 @@ namespace DevIO.App.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
+        [Route("Produtos/editar-produto/{id:Guid}")]
         public async Task<IActionResult> Edit(Guid id)
         {
             var produtoViewModel = await ObterProduto(id);
@@ -164,7 +165,7 @@ namespace DevIO.App.Controllers
             return View(produtoViewModel);
         }
 
-
+        [Route("Produtos/editar-produto/{id:Guid}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, ProdutoViewModel produtoViewModel)

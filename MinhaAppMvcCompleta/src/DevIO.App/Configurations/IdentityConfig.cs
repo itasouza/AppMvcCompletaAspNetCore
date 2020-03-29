@@ -19,7 +19,6 @@ namespace DevIO.App.Configurations
             });
 
             //TODO dúvida sobre AddDefaultUI(UIFramework.Bootstrap4) e método ConfigureServices . diferente
-            //https://andyp.dev/posts/asp-net-core-identity-configure-services-essentials
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 

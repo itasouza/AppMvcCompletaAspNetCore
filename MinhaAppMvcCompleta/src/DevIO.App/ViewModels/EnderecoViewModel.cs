@@ -30,6 +30,7 @@ namespace DevIO.App.ViewModels
         [Display(ResourceType = typeof(Traducao), Name = "ComplementoLogradouro")]
         [MinLength(2, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E002")]
         [MaxLength(100, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E003")]
+        [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
         public string Complemento { get; set; }
 
 

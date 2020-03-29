@@ -34,7 +34,7 @@ PM> Add-Migration AjusteProduto -Context MeuDbContext
 
 https://imasters.com.br/dotnet/implementando-location-em-projetos-asp-net-core
 https://andrewlock.net/url-culture-provider-using-middleware-as-mvc-filter-in-asp-net-core-1-1-0/
-
+https://andyp.dev/posts/asp-net-core-identity-configure-services-essentials
 
 Microsoft.EntityFrameworkCore
 Microsoft.EntityFrameworkCore.Relational

@@ -10,6 +10,7 @@ using X.PagedList;
 
 namespace DevIO.App.Controllers
 {
+
     public class FornecedoresController : BaseController
     {
         private readonly IFornecedorRepository _fornecedorRepository;
@@ -23,7 +24,7 @@ namespace DevIO.App.Controllers
             _mapper = mapper;
         }
 
-        // GET: Fornecedores
+        [Route("Fornecedores/lista-de-fornecedores")]
         public async Task<IActionResult> Index(string TextoPesquisa = null,
                                                int valorSelecao = 0,
                                                string DataInicial = null,
@@ -97,18 +98,20 @@ namespace DevIO.App.Controllers
         }
 
 
-        // GET: Fornecedores/Create
+        [Route("Fornecedores/criar-novo-fornecedor")]
         public IActionResult Create()
         {
             return View();
         }
 
+        [Route("Fornecedores/criar-novo-fornecedor")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(FornecedorViewModel fornecedorViewModel)
         {
-            //TODO verificar o porque não grava o tipo de fornecedor
+
             if (!ModelState.IsValid) return View(fornecedorViewModel);
+
 
             try
             {
@@ -119,7 +122,7 @@ namespace DevIO.App.Controllers
             catch (Exception ex)
             {
                 TempData["Erro"] = "Não foi possivel gravar o registro." + ex.Message;
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Create));
                 throw;
             }
 
@@ -127,7 +130,9 @@ namespace DevIO.App.Controllers
 
         }
 
-        // GET: Fornecedores/Edit/5
+        
+        [Route("Fornecedores/editar-fornecedor/{id:Guid}")]
+        [HttpGet]
         public async Task<IActionResult> Edit(Guid id)
         {
             var fornecedorViewModel = await ObterFornecedorProdutosEndereco(id);
@@ -139,6 +144,7 @@ namespace DevIO.App.Controllers
             return View(fornecedorViewModel);
         }
 
+        [Route("Fornecedores/editar-fornecedor/{id:Guid}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, FornecedorViewModel fornecedorViewModel)
@@ -168,16 +174,24 @@ namespace DevIO.App.Controllers
         }
 
 
-
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
+            //TODO - verificar problema da exclusão
             var fornecedorViewModel = await ObterFornecedorEndereco(id);
             if (fornecedorViewModel == null) return NotFound();
 
             try
             {
+               //remover o endereço
+               if(fornecedorViewModel.Endereco != null)
+                {
+                    Guid IdEndereco = fornecedorViewModel.Endereco.Id;
+                    await _enderecoRepository.Remover(IdEndereco);
+                }
+
+                //remover o fornecedor
                 await _fornecedorRepository.Remover(id);
                 TempData["msg"] = fornecedorViewModel.Nome + " foi excluido com sucesso."; 
             }
