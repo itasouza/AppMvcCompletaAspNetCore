@@ -16,9 +16,10 @@ namespace DevIO.App.Controllers
         private readonly IEnderecoRepository _enderecoRepository;
         private readonly IMapper _mapper;
 
-        public FornecedoresController(IFornecedorRepository fornecedorRepository, IMapper mapper)
+        public FornecedoresController(IFornecedorRepository fornecedorRepository, IMapper mapper, IEnderecoRepository enderecoRepository)
         {
             _fornecedorRepository = fornecedorRepository;
+            _enderecoRepository = enderecoRepository;
             _mapper = mapper;
         }
 
@@ -199,13 +200,9 @@ namespace DevIO.App.Controllers
         public async Task<IActionResult> AtualizarEndereco(FornecedorViewModel fornecedorViewModel)
         {
 
-            //TODO - verificar erro de gravação do endereço
+
             try
             {
-                ModelState.Remove("Nome");
-                ModelState.Remove("Documento");
-                ModelState.Remove("TipoFornecedor");
-
                 var dados = _mapper.Map<Endereco>(fornecedorViewModel.Endereco);
                 await _enderecoRepository.Atualizar(dados);
                 TempData["msg"] = "O Cadastro foi atualizado com sucesso";
