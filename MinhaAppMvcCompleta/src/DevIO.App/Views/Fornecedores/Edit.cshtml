@@ -8,6 +8,15 @@
 
 </p>
 
+@section Styles
+{
+    <style type="text/css">
+        a:not([href]):not([tabindex]) {
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+}
 
 
 <div class="container-fluid">
@@ -73,26 +82,85 @@
     <partial name="_DetalhesEndereco" />
 </div>
 
-<!--vai mostrar o conteúdo para edição do endereço-->
-<div id="myModal" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="primary-header-modalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div id="myModalContent"></div>
-        </div>
-    </div>
-</div>
 
+<!-- Modal -->
+
+<div id="primary-header-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="primary-header-modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form asp-action="AtualizarEndereco" id="formulario">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden"  asp-for="Endereco.FornecedorId" />
+            <input type="hidden" asp-for="Endereco.Id" />
+
+
+            <div class="modal-content">
+                <div class="modal-header modal-colored-header bg-primary">
+                    <h4 class="modal-title" id="primary-header-modalLabel">
+                        Alteração do endereço : <text class=" nome font-weight-bold"></text>
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+
+                <div class="modal-body">
+
+                    <partial name="_Endereco" />
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
+                    <button type="button" class="btn btn-primary" id="eviarAjax">Salvar</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </form>
+
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
-    <script>
+<script>
+
+
+        function ExibirModal(idRecebido, nome) {
+            $(".nome")[0].innerHTML = nome;
+            $(".modal").modal();
+
+        };
+
+    
+        BuscaCep();
+
+
         $(document).ready(function () {
-            AjaxModal();
+
+             $("#eviarAjax").click(function (event) {
+
+                var formulario = $("#formulario");
+
+                 $.ajax({
+
+                    url: "/Fornecedores/AtualizarEndereco",
+                    data: formulario.serialize(),
+                    method: "POST",
+                    success: function (resultado) {
+                        if (resultado.result) {
+                            alert(resultado.mensaje);
+                            window.location.href = '@Url.Action("Edit", "Fornecedores")';
+                        }
+                        else {
+                            alert(resultado.mensaje);
+                        }
+                    }
+                });
+             });
+
         });
-    </script>
+
+
+</script>
 
 }
 

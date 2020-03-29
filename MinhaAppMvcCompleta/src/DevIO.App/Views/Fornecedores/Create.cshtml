@@ -35,7 +35,7 @@
                             <div class="form-group mt-3">
                                 <label asp-for="TipoFornecedor" class="control-label"></label><br />
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" id="customRadio1" value="1" name="customRadio" class="custom-control-input" asp-for="TipoFornecedor" checked >
+                                    <input type="radio" id="customRadio1" value="1" name="customRadio" class="custom-control-input" asp-for="TipoFornecedor" checked>
                                     <label class="custom-control-label" for="customRadio1">Pessoa Física</label>
                                 </div>
                                 <div class="custom-control custom-radio">
@@ -55,6 +55,7 @@
 
                             <h4>Endereço</h4>
                             <hr />
+
                             <partial name="_Endereco" />
 
                             <div class="form-group">
@@ -75,4 +76,8 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        BuscaCep();
+    </script>
 }

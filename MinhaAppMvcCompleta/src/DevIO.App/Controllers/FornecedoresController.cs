@@ -192,32 +192,34 @@ namespace DevIO.App.Controllers
         }
 
 
-        public async Task<IActionResult> AtualizarEndereco(Guid id)
-        {
-            var fornecedor = await ObterFornecedorEndereco(id);
 
-            if (fornecedor == null)
-            {
-                return NotFound();
-            }
-
-            return PartialView("_AtualizarEndereco", new FornecedorViewModel { Endereco = fornecedor.Endereco });
-        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AtualizarEndereco(FornecedorViewModel fornecedorViewModel)
         {
-            ModelState.Remove("Nome");
-            ModelState.Remove("Documento");
 
+            //TODO - verificar erro de gravação do endereço
+            try
+            {
+                ModelState.Remove("Nome");
+                ModelState.Remove("Documento");
+                ModelState.Remove("TipoFornecedor");
 
-            if (!ModelState.IsValid) return PartialView("_AtualizarEndereco", fornecedorViewModel);
+                var dados = _mapper.Map<Endereco>(fornecedorViewModel.Endereco);
+                await _enderecoRepository.Atualizar(dados);
+                TempData["msg"] = "O Cadastro foi atualizado com sucesso";
+            }
+            catch (Exception ex)
+            {
 
-            await _enderecoRepository.Atualizar(_mapper.Map<Endereco>(fornecedorViewModel.Endereco));
+                TempData["Erro"] = "Não foi possivel atualizar o registro." + ex.Message;
+                return RedirectToAction(nameof(Index));
+                throw;
+            }
 
-            var url = Url.Action("ObterEndereco", "Fornecedores", new { id = fornecedorViewModel.Endereco.FornecedorId });
-            return Json(new { success = true, url });
+            return Json(new { result = "ok", mensaje = "O Cadastro foi atualizado com sucesso", 
+                 id = fornecedorViewModel.Endereco.FornecedorId });
         }
 
 
