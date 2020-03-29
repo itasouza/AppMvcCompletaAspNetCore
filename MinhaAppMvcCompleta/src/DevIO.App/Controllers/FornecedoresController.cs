@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DevIO.App.ViewModels;
+using DevIO.Business.Intefaces;
 using DevIO.Business.Interfaces;
 using DevIO.Business.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +18,8 @@ namespace DevIO.App.Controllers
         private readonly IEnderecoRepository _enderecoRepository;
         private readonly IMapper _mapper;
 
-        public FornecedoresController(IFornecedorRepository fornecedorRepository, IMapper mapper, IEnderecoRepository enderecoRepository)
+        public FornecedoresController(IFornecedorRepository fornecedorRepository, IMapper mapper,
+                                      IEnderecoRepository enderecoRepository, INotificador notificador) : base(notificador)
         {
             _fornecedorRepository = fornecedorRepository;
             _enderecoRepository = enderecoRepository;

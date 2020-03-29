@@ -19,7 +19,11 @@
                     <h5 class="text-primary float-right mt-0"></h5>
                     <div class="ribbon-content">
                         <form enctype="multipart/form-data" asp-action="Edit">
-                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <!--mensagens -->
+                            <vc:Summary></vc:Summary>
+
+
                             <input type="hidden" asp-for="Id" />
                             <input type="hidden" asp-for="Imagem" />
 

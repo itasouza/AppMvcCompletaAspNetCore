@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DevIO.App.ViewModels;
+using DevIO.Business.Intefaces;
 using DevIO.Business.Interfaces;
 using DevIO.Business.Models;
 using Microsoft.AspNetCore.Http;
@@ -21,7 +22,8 @@ namespace DevIO.App.Controllers
         private readonly IMapper _mapper;
 
         public ProdutosController(IProdutoRepository produtoRepository,
-                                  IFornecedorRepository fornecedorRepository, IMapper mapper)
+                                  IFornecedorRepository fornecedorRepository, 
+                                  IMapper mapper, INotificador notificador) : base(notificador)
         {
             _produtoRepository = produtoRepository;
             _fornecedorRepository = fornecedorRepository;
