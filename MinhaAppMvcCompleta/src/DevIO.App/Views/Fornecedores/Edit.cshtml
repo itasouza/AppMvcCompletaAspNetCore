@@ -150,11 +150,11 @@
                     method: "POST",
                     success: function (resultado) {
                         if (resultado.result) {
-                            alert(resultado.mensaje);
+                            toastr["success"](resultado.mensaje)
                             window.location.href = '@Url.Action("Edit", "Fornecedores")';
                         }
                         else {
-                            alert(resultado.mensaje);
+                           toastr["error"](resultado.mensaje)
                         }
                     }
                 });

@@ -10,6 +10,7 @@ namespace DevIO.Business.Interfaces
     {
         Task<Fornecedor> ObterFornecedorEndereco(Guid id);
         Task<Fornecedor> ObterFornecedorProdutosEndereco(Guid id);
-
+        Task<IEnumerable<Fornecedor>> ObterParaAutocomplete(string text);
+        Task<Fornecedor> ObterParaAutocomplete(Guid id);
     }
 }

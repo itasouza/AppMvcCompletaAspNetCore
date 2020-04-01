@@ -914,6 +914,7 @@ C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.App\obj\Debug\netc
 C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.App\obj\Debug\netcoreapp3.0\Razor\Views\Produtos\Create.cshtml.g.cs
 C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.App\obj\Debug\netcoreapp3.0\Razor\Views\Produtos\Edit.cshtml.g.cs
 C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.App\obj\Debug\netcoreapp3.0\Razor\Views\Produtos\Index.cshtml.g.cs
+C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.App\obj\Debug\netcoreapp3.0\Razor\Views\Shared\Components\Summary\Default.cshtml.g.cs
 C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.App\obj\Debug\netcoreapp3.0\Razor\Views\Shared\Error.cshtml.g.cs
 C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.App\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.App\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
@@ -930,4 +931,3 @@ C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.App\obj\Debug\netc
 C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.App\obj\Debug\netcoreapp3.0\DevIO.App.csproj.CopyComplete
 C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.App\obj\Debug\netcoreapp3.0\DevIO.App.dll
 C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.App\obj\Debug\netcoreapp3.0\DevIO.App.pdb
-C:\src\AppMvcCompletaAspNetCore\MinhaAppMvcCompleta\src\DevIO.App\obj\Debug\netcoreapp3.0\Razor\Views\Shared\Components\Summary\Default.cshtml.g.cs

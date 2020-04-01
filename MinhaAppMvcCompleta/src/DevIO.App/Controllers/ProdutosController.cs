@@ -14,7 +14,7 @@ using X.PagedList;
 
 namespace DevIO.App.Controllers
 {
-
+    //http://abctutorial.com/Post/34/multi-select-cascading-dropdown-using-jquery-%7C-aspnet-mvc
     public class ProdutosController : BaseController
     {
         private readonly IProdutoRepository _produtoRepository;
@@ -209,6 +209,9 @@ namespace DevIO.App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
+            string MensagemTipo = "";
+            string MensagemTexto = "";
+
             var produtoViewModel = await ObterProduto(id);
             if (produtoViewModel == null)
             {
@@ -219,19 +222,62 @@ namespace DevIO.App.Controllers
             {
                 await _produtoRepository.Remover(id);
                 TempData["msg"] = produtoViewModel.Nome + " foi excluido com sucesso.";
+                MensagemTipo = "success";
+                MensagemTexto = produtoViewModel.Nome + " foi excluido com sucesso.";
             }
             catch (Exception ex)
             {
 
                 TempData["Erro"] = "Não foi possivel remover o registro." + ex.Message;
+                MensagemTipo = "error";
+                MensagemTexto = "Não foi possivel remover o registro ";
                 return RedirectToAction(nameof(Index));
                 throw;
             }
-
-            return Json(produtoViewModel.Nome + "  foi excluido com sucesso.");
+            return Json(new
+            {
+                result = MensagemTipo,
+                mensaje = MensagemTexto
+            });
         }
 
 
+        [HttpGet]
+        public async Task<IActionResult> ObterFornecedorParaAutocompleteTexto(string text)
+        {
+
+            if (string.IsNullOrEmpty(text))
+            {
+                return Json(new
+                {
+                    result = ""
+                }); ;
+            }
+            else
+            {
+                var dados = _mapper.Map<IEnumerable<FornecedorViewModel>>(await _fornecedorRepository.ObterParaAutocomplete(text));
+
+                return Json(new
+                {
+                    results = dados
+                });
+
+            }
+
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ObterFornecedorParaAutocompleteId(Guid id)
+        {
+
+           var dados = _mapper.Map<IEnumerable<FornecedorViewModel>>(await _fornecedorRepository.ObterParaAutocomplete(id));
+
+           return Json(new
+           {
+              results = dados
+           });
+
+        }
 
 
         private async Task<ProdutoViewModel> ObterProduto(Guid id)

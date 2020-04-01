@@ -30,5 +30,31 @@ namespace DevIO.Data.Repository
                    .Include(c => c.Endereco)
                    .FirstOrDefaultAsync(c => c.Id == id);
         }
+
+        public async Task<IEnumerable<Fornecedor>> ObterParaAutocomplete(string text)
+        {
+            return await Db.Fornecedores.AsNoTracking()
+                .Where(x => x.Nome.Contains(text))
+                .OrderBy(p => p.Nome)
+                .ToListAsync();
+        }
+
+
+        public async Task<Fornecedor> ObterParaAutocomplete(Guid id)
+        {
+            return await Db.Fornecedores.AsNoTracking()
+                .FirstOrDefaultAsync(f => f.Id == id);
+        }
+
+        //public async Task<IEnumerable<Fornecedor>> ObterParaAutocomplete(string text)
+        //{
+        //    return await Db.Fornecedores.AsNoTracking()
+        //                                .Where(x => x.Nome.Contains(text))
+        //                                .OrderBy(p => p.Nome)
+        //                                .Select(c => new FornecedorConsulta { Id = c.Id, Nome = c.Nome})
+        //                                .ToListAsync();
+
+        //}
+
     }
 }

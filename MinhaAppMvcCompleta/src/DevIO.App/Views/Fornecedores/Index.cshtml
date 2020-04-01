@@ -246,8 +246,9 @@
                     },
                     url: urlCompleto,
                     data: { id: idRecebido },
-                    success: function (data) {
+                    success: function (resultado) {
                         //console.log(data);
+                        toastr[resultado.result](resultado.mensaje)
                         $(".modal").modal("hide");
                         location.reload(true);
                     }

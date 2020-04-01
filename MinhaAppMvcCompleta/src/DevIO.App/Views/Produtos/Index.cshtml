@@ -249,10 +249,9 @@
                     },
                     url: urlCompleto,
                     data: { id: idRecebido },
-                    success: function (data) {
+                    success: function (resultado) {
                         //console.log(data);
-                        
-                        $(".modal").modal("hide");
+                        toastr[resultado.result](resultado.mensaje)
                         location.reload(true);
                     }
                 })

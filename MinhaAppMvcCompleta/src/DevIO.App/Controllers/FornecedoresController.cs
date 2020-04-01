@@ -111,7 +111,7 @@ namespace DevIO.App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(FornecedorViewModel fornecedorViewModel)
         {
-            //TODO - o tipo de fornecedor não está gravando
+
             if (!ModelState.IsValid) return View(fornecedorViewModel);
 
 
@@ -181,6 +181,9 @@ namespace DevIO.App.Controllers
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             bool Excluir = true;
+            string MensagemTipo = "";
+            string MensagemTexto = "";
+
             var fornecedorViewModel = await ObterFornecedorProdutosEndereco(id);
             if (fornecedorViewModel == null) return NotFound();
 
@@ -200,6 +203,8 @@ namespace DevIO.App.Controllers
                     {
                         Excluir = false;
                         TempData["Erro"] = "Não foi possivel remover o registro porque ele está sendo usado em um produto";
+                        MensagemTipo = "error";
+                        MensagemTexto = "Não foi possivel remover o registro porque ele está sendo usado em um produto";
                     }
                 }
 
@@ -208,18 +213,23 @@ namespace DevIO.App.Controllers
                     //remover o fornecedor
                     await _fornecedorRepository.Remover(id);
                     TempData["msg"] = fornecedorViewModel.Nome + " foi excluido com sucesso.";
+                    MensagemTipo = "success";
+                    MensagemTexto = fornecedorViewModel.Nome + " foi excluido com sucesso.";
                 }
 
             }
             catch (Exception ex)
             {
 
-                TempData["Erro"] = "Não foi possivel remover o registro." + ex.Message;
+                TempData["Erro"] = fornecedorViewModel.Nome +  "Não foi possivel remover o registro." + ex.Message;
                 return RedirectToAction(nameof(Index));
                 throw;
             }
-
-            return Json(fornecedorViewModel.Nome + "  foi excluido com sucesso.");
+            return Json(new
+            {
+                result = MensagemTipo,
+                mensaje = MensagemTexto
+            });
         }
 
 
