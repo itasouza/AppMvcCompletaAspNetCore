@@ -31,7 +31,7 @@ namespace DevIO.Data.Repository
                    .FirstOrDefaultAsync(c => c.Id == id);
         }
 
-        public async Task<IEnumerable<Fornecedor>> ObterParaAutocomplete(string text)
+        public async Task<IEnumerable<Fornecedor>> ObterFornecedorParaAutocompleteTexto(string text)
         {
             return await Db.Fornecedores.AsNoTracking()
                 .Where(x => x.Nome.Contains(text))
@@ -40,11 +40,20 @@ namespace DevIO.Data.Repository
         }
 
 
-        public async Task<Fornecedor> ObterParaAutocomplete(Guid id)
+        public async Task<Fornecedor> ObterFornecedorParaAutocompleteId(Guid id)
         {
             return await Db.Fornecedores.AsNoTracking()
                 .FirstOrDefaultAsync(f => f.Id == id);
         }
+
+        public async Task<Fornecedor> ObterFornecedor(Guid id)
+        {
+            return await Db.Fornecedores.AsNoTracking()
+                .FirstOrDefaultAsync(f => f.Id == id);
+        }
+
+        
+
 
         //public async Task<IEnumerable<Fornecedor>> ObterParaAutocomplete(string text)
         //{

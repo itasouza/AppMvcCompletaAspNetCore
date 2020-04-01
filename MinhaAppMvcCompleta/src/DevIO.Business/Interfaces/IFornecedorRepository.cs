@@ -9,8 +9,10 @@ namespace DevIO.Business.Interfaces
     public interface IFornecedorRepository :IRepositoryGenerico<Fornecedor>
     {
         Task<Fornecedor> ObterFornecedorEndereco(Guid id);
+
+        Task<Fornecedor> ObterFornecedor(Guid id);
         Task<Fornecedor> ObterFornecedorProdutosEndereco(Guid id);
-        Task<IEnumerable<Fornecedor>> ObterParaAutocomplete(string text);
-        Task<Fornecedor> ObterParaAutocomplete(Guid id);
+        Task<IEnumerable<Fornecedor>> ObterFornecedorParaAutocompleteTexto(string text);
+        Task<Fornecedor> ObterFornecedorParaAutocompleteId(Guid id);
     }
 }

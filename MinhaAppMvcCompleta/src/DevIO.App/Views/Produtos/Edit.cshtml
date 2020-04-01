@@ -26,10 +26,12 @@
 
                             <input type="hidden" asp-for="Id" />
                             <input type="hidden" asp-for="Imagem" />
+                            <input type="hidden" id="FornecedorId" asp-for="Fornecedor.Id" />
+
 
                             <div class="form-group mb-3">
                                 <label asp-for="FornecedorId" class="control-label"></label>
-                                <select class="form-control select2" data-toggle="select2" asp-for="FornecedorId" asp-items="@(new SelectList(Model.Fornecedores,"Id","Nome"))">
+                                <select class="form-control select2 fornecedor-selecao fornecedor-edicao" data-toggle="select2" asp-for="FornecedorId">
                                     <option></option>
                                 </select>
                                 <span asp-validation-for="FornecedorId" class="text-danger"></span>
@@ -153,19 +155,6 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/produto.js"></script>
 
-
-    <script>
-
-        function CarregarImagem(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#imagem').attr('src', e.target.result).height("136px");
-                }
-            }
-            reader.readAsDataURL(input.files[0]);
-        };
-
-    </script>
 }

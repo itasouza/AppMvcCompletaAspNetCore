@@ -73,8 +73,6 @@ namespace DevIO.App.ViewModels
 
         public FornecedorViewModel Fornecedor { get; set; }
 
-        //Lista de Forncedores para o cadastro de produto
-        public IEnumerable<FornecedorViewModel> Fornecedores { get; set; }
 
     }
 }

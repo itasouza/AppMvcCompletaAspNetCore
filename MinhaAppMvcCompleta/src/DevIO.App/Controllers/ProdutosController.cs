@@ -114,10 +114,9 @@ namespace DevIO.App.Controllers
         }
 
         [Route("Produtos/criar-novo-produto")]
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
-            var ProdutoViewModel = await PopularFornecedores(new ProdutoViewModel());
-            return View(ProdutoViewModel);
+            return View();
         }
 
 
@@ -126,10 +125,7 @@ namespace DevIO.App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProdutoViewModel produtoViewModel)
         {
-            //TODO adicionar select2 para consulta do fornecedor no cadastro de produto
-            //TODO fazer o filtro para o select 2
 
-            produtoViewModel = await PopularFornecedores(produtoViewModel);
             if (!ModelState.IsValid) return View(produtoViewModel);
 
             try
@@ -172,6 +168,11 @@ namespace DevIO.App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, ProdutoViewModel produtoViewModel)
         {
+
+            //fornecedor selecionado
+            var fornecedorSelecioando =  _mapper.Map<FornecedorViewModel>(await _fornecedorRepository.ObterFornecedor(produtoViewModel.FornecedorId));
+            produtoViewModel.Fornecedor = fornecedorSelecioando;
+
             if (id != produtoViewModel.Id) return NotFound();
             if (!ModelState.IsValid) return View(produtoViewModel);
 
@@ -212,7 +213,7 @@ namespace DevIO.App.Controllers
             string MensagemTipo = "";
             string MensagemTexto = "";
 
-            var produtoViewModel = await ObterProduto(id);
+            var produtoViewModel =  _mapper.Map<ProdutoViewModel>(await _produtoRepository.ObterPorId(id));
             if (produtoViewModel == null)
             {
                 return NotFound();
@@ -255,7 +256,7 @@ namespace DevIO.App.Controllers
             }
             else
             {
-                var dados = _mapper.Map<IEnumerable<FornecedorViewModel>>(await _fornecedorRepository.ObterParaAutocomplete(text));
+                var dados = _mapper.Map<IEnumerable<FornecedorViewModel>>(await _fornecedorRepository.ObterFornecedorParaAutocompleteTexto(text));
 
                 return Json(new
                 {
@@ -269,10 +270,9 @@ namespace DevIO.App.Controllers
         [HttpGet]
         public async Task<IActionResult> ObterFornecedorParaAutocompleteId(Guid id)
         {
+            var dados = _mapper.Map<FornecedorViewModel>(await _fornecedorRepository.ObterFornecedorParaAutocompleteId(id));
 
-           var dados = _mapper.Map<IEnumerable<FornecedorViewModel>>(await _fornecedorRepository.ObterParaAutocomplete(id));
-
-           return Json(new
+            return Json(new
            {
               results = dados
            });
@@ -283,17 +283,10 @@ namespace DevIO.App.Controllers
         private async Task<ProdutoViewModel> ObterProduto(Guid id)
         {
             var produto = _mapper.Map<ProdutoViewModel>(await _produtoRepository.ObterProdutoFornecedor(id));
-            produto.Fornecedores = _mapper.Map<IEnumerable<FornecedorViewModel>>(await _fornecedorRepository.ObterTodos());
+            produto.Fornecedor = _mapper.Map <FornecedorViewModel> (await _fornecedorRepository.ObterFornecedor(produto.FornecedorId));
             return produto;
         }
 
-
-
-        private async Task<ProdutoViewModel> PopularFornecedores(ProdutoViewModel produto)
-        {
-            produto.Fornecedores = _mapper.Map<IEnumerable<FornecedorViewModel>>(await _fornecedorRepository.ObterTodos());
-            return produto;
-        }
 
 
         private async Task<bool> UpLoadArquivo(IFormFile arquivo, string imgPrefixo)
