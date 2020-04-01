@@ -1,11 +1,36 @@
 ﻿
+
 $(document).ready(function () {
     definirDatePicker();
-    
+
     $('.campovalor').mask('#.##0,00', { reverse: true });
-   
+
 });
 
+
+
+
+//========================================================================
+
+toastr.options = {
+    "closeButton": false,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": true,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": false,
+    "showDuration": "200",
+    "hideDuration": "500",
+    "timeOut": "3000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+}
+
+
+//====================================================================
 
 $("#formBusca").submit(function (event) {
 
@@ -16,37 +41,18 @@ $("#formBusca").submit(function (event) {
     var dataFinal = ConverteParaData(data2);
 
     if (dataInicial > dataFinal) {
-        alert('A data inicial não pode ser menor que a data final!');
+        toastr["error"]('A data inicial não pode ser menor que a data final!');
         event.preventDefault();
     }
 
 });
-
-
-
 
 function ConverteParaData(data) {
     var dataArray = data.split('/');
     var novaData = new Date(dataArray[2], dataArray[1], dataArray[0]);
     return novaData;
 }
-
-
-
-
-
-function ErroSweetalert() {
-    swal({
-        position: 'top-end',
-        showConfirmButton: false,
-        toast: true,
-        timer: 3000,
-        type: 'error',
-        title: 'A data inicial não pode ser menor que a data final!'
-    });
-}
-
-
+//====================================================================
 
 //configuração do datepicker
 function definirDatePicker() {

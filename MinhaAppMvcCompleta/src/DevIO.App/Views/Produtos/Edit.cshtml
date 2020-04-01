@@ -26,7 +26,7 @@
 
                             <input type="hidden" asp-for="Id" />
                             <input type="hidden" asp-for="Imagem" />
-                            <input type="hidden" id="FornecedorId" asp-for="Fornecedor.Id" />
+                            <input type="hidden" id="IdFornecedorRetorno" asp-for="Fornecedor.Id" />
 
 
                             <div class="form-group mb-3">
@@ -82,7 +82,7 @@
                                                         @if (Model.Imagem != null)
                                                         {
                                                             <span class="float-left m-2 mr-4">
-                                                                <img id="imagem" src="@Url.Content("~/imagensPerfil/" + Model.Imagem)"
+                                                                <img id="imagemProduto" src="@Url.Content("~/imagensPerfil/" + Model.Imagem)"
                                                                      alt="Foto produto"
                                                                      class="rounded-circle img-thumbnail">
                                                             </span>
@@ -90,7 +90,7 @@
                                                         else
                                                         {
                                                             <span class="float-left m-2 mr-4">
-                                                                <img id="imagem" src="~/assets/images/users/avatar-foto.jpg"
+                                                                <img id="imagemProduto" src="~/assets/images/users/avatar-foto.jpg"
                                                                      alt="Foto produto"
                                                                      class="rounded-circle img-thumbnail">
                                                             </span>
@@ -156,5 +156,11 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script src="~/js/produto.js"></script>
+
+
+    <script>
+         ObterDadosFornecedor();     
+    </script>
+
 
 }

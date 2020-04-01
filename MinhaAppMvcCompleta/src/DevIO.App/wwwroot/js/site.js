@@ -8,38 +8,6 @@ $(document).ready(function () {
 });
 
 
-//======================================================================
-
-$(".fornecedor-selecao").select2({
-    placeholder: "Selecione",
-    minimumInputLength: 1,
-    ajax: {
-        url: '/Produtos/ObterFornecedorParaAutocompleteTexto',
-            type: 'GET',
-            dataType: 'json',
-            quietMillis: 250,
-            allowClear: true,
-            data: function (params) {
-                return { 'text': params.term };
-            },
-            success: function (data) {
-              //  console.log(data.results);
-           },
-           processResults: function (data) {
-                var _results = [];
-               $.each(data.results, function (index) {
-                   //console.log(data.results[index].id);
-                    _results.push({
-                        id: data.results[index].id,
-                        text: data.results[index].nome
-                    });
-                });
-                return { results: _results };
-            }
-
-    }
-
-});
 
 
 //========================================================================
