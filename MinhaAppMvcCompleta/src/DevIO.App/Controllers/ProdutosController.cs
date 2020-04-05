@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using DevIO.App.Extensions;
 using DevIO.App.ViewModels;
 using DevIO.Business.Intefaces;
 using DevIO.Business.Interfaces;
 using DevIO.Business.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -15,6 +17,8 @@ using X.PagedList;
 namespace DevIO.App.Controllers
 {
     //http://abctutorial.com/Post/34/multi-select-cascading-dropdown-using-jquery-%7C-aspnet-mvc
+
+    [Authorize]
     public class ProdutosController : BaseController
     {
         private readonly IProdutoRepository _produtoRepository;
@@ -30,7 +34,7 @@ namespace DevIO.App.Controllers
             _mapper = mapper;
         }
 
-
+        [AllowAnonymous]
         [Route("Produtos/lista-de-produtos")]
         public async Task<IActionResult> Index(string TextoPesquisa = null,
                                                int valorSelecao = 0,
@@ -113,13 +117,15 @@ namespace DevIO.App.Controllers
 
         }
 
+        [ClaimsAuthorize("Produto", "Adicionar")]
         [Route("Produtos/criar-novo-produto")]
         public IActionResult Create()
         {
             return View();
         }
+       
 
-
+        [ClaimsAuthorize("Produto", "Adicionar")]
         [Route("Produtos/criar-novo-produto")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -152,6 +158,8 @@ namespace DevIO.App.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
+        [ClaimsAuthorize("Produto", "Editar")]
         [Route("Produtos/editar-produto/{id:Guid}")]
         public async Task<IActionResult> Edit(Guid id)
         {
@@ -163,6 +171,8 @@ namespace DevIO.App.Controllers
             return View(produtoViewModel);
         }
 
+
+        [ClaimsAuthorize("Produto", "Editar")]
         [Route("Produtos/editar-produto/{id:Guid}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -170,11 +180,11 @@ namespace DevIO.App.Controllers
         {
 
             //fornecedor selecionado
-            var fornecedorSelecioando =  _mapper.Map<FornecedorViewModel>(await _fornecedorRepository.ObterFornecedor(produtoViewModel.FornecedorId));
+            var fornecedorSelecioando =  _mapper.Map<FornecedorViewModel>(await _fornecedorRepository.ObterFornecedorEndereco(produtoViewModel.FornecedorId));
             produtoViewModel.Fornecedor = fornecedorSelecioando;
 
             if (id != produtoViewModel.Id) return NotFound();
-            if (!ModelState.IsValid) return View(produtoViewModel);
+          //  if (!ModelState.IsValid) return View(produtoViewModel);
 
             //se tiver imagem nova, vou sobrescrever
             var imgPrefixo = Guid.NewGuid() + "_";
@@ -206,6 +216,8 @@ namespace DevIO.App.Controllers
         }
 
 
+
+        [ClaimsAuthorize("Produto", "Excluir")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -213,7 +225,7 @@ namespace DevIO.App.Controllers
             string MensagemTipo = "";
             string MensagemTexto = "";
 
-            var produtoViewModel =  _mapper.Map<ProdutoViewModel>(await _produtoRepository.ObterPorId(id));
+            var produtoViewModel = await ObterProduto(id);
             if (produtoViewModel == null)
             {
                 return NotFound();

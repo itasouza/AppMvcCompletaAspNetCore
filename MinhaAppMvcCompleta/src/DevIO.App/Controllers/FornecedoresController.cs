@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using DevIO.App.Extensions;
 using DevIO.App.ViewModels;
 using DevIO.Business.Intefaces;
 using DevIO.Business.Interfaces;
 using DevIO.Business.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,7 +13,7 @@ using X.PagedList;
 
 namespace DevIO.App.Controllers
 {
-
+    [Authorize]
     public class FornecedoresController : BaseController
     {
         private readonly IFornecedorRepository _fornecedorRepository;
@@ -26,6 +28,8 @@ namespace DevIO.App.Controllers
             _mapper = mapper;
         }
 
+
+        [AllowAnonymous]
         [Route("Fornecedores/lista-de-fornecedores")]
         public async Task<IActionResult> Index(string TextoPesquisa = null,
                                                int valorSelecao = 0,
@@ -99,13 +103,14 @@ namespace DevIO.App.Controllers
             return View(dados);
         }
 
-
+        [ClaimsAuthorize("Fornecedor", "Adicionar")]
         [Route("Fornecedores/criar-novo-fornecedor")]
         public IActionResult Create()
         {
             return View();
         }
 
+        [ClaimsAuthorize("Fornecedor", "Adicionar")]
         [Route("Fornecedores/criar-novo-fornecedor")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -132,7 +137,8 @@ namespace DevIO.App.Controllers
 
         }
 
-        
+
+        [ClaimsAuthorize("Fornecedor", "Editar")]
         [Route("Fornecedores/editar-fornecedor/{id:Guid}")]
         [HttpGet]
         public async Task<IActionResult> Edit(Guid id)
@@ -146,6 +152,7 @@ namespace DevIO.App.Controllers
             return View(fornecedorViewModel);
         }
 
+        [ClaimsAuthorize("Fornecedor", "Editar")]
         [Route("Fornecedores/editar-fornecedor/{id:Guid}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -175,7 +182,7 @@ namespace DevIO.App.Controllers
 
         }
 
-
+        [ClaimsAuthorize("Fornecedor", "Excluir")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -234,7 +241,7 @@ namespace DevIO.App.Controllers
 
 
 
-
+        [ClaimsAuthorize("Fornecedor", "Editar")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AtualizarEndereco(FornecedorViewModel fornecedorViewModel)

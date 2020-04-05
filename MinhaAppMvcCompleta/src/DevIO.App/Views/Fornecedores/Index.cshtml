@@ -122,7 +122,9 @@
                     </p>
                     <div class="col-md-12 col py-1 ">
                         <h4 class="header-title">Lista de Fornecedores</h4>
-                        <a asp-action="Create" class="btn btn-outline-primary">Adicionar</a>
+                        <p supress-by-claim-name="Fornecedor" supress-by-claim-value="Adicionar">
+                            <a asp-action="Create" class="btn btn-outline-primary">Adicionar</a>
+                         </p>
                     </div>
 
 
@@ -177,8 +179,8 @@
                                                 </td>
 
                                                 <td class="table-action">
-                                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar"><i class="mdi mdi-pencil"></i> </a>
-                                                    <a class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Deletar" onclick="ExibirModal('@item.Id','@item.Nome','@controller')"><i class="mdi mdi-delete"></i> </a>
+                                                    <a supress-by-claim-name="Fornecedor" supress-by-claim-value="Editar" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar"><i class="mdi mdi-pencil"></i> </a>
+                                                    <a supress-by-claim-name="Fornecedor" supress-by-claim-value="Excluir" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Deletar" onclick="ExibirModal('@item.Id','@item.Nome','@controller')"><i class="mdi mdi-delete"></i> </a>
                                                 </td>
                                             </tr>
 
